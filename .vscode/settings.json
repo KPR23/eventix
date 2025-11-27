@@ -1,0 +1,66 @@
+{
+  "tabnine.experimentalAutoImports": true,
+  "terminal.integrated.env.osx": {},
+  "files.autoSave": "onFocusChange",
+  "editor.fontSize": 14,
+  "editor.fontFamily": "Jetbrains mono",
+  "editor.wordWrap": "on",
+  "workbench.iconTheme": "symbols",
+  "console-ninja.featureSet": "Community",
+
+  "prettier.enable": false,
+  "prettier.useTabs": false,
+
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "redhat.telemetry.enabled": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "aspnetcorerazor": true
+  },
+
+  "window.zoomLevel": 2,
+  "editor.tabSize": 2,
+  "workbench.activityBar.location": "top",
+  "window.newWindowProfile": "Default",
+  "workbench.startupEditor": "none",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "git.confirmSync": false,
+  "geminicodeassist.project": "applied-bricolage-wf3dl",
+  "diffEditor.codeLens": true,
+  "geminicodeassist.displayInlineContextHint": false,
+  "animations.Install-Method": "Apc Customize UI++",
+  "workbench.colorTheme": "Tokyo Night",
+  "symbols.hidesExplorerArrows": false,
+  "diffEditor.ignoreTrimWhitespace": false
+}
