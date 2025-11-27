@@ -1,11 +1,22 @@
-import { auth } from "@clerk/nextjs/server";
+"use client";
 
-export default async function Home() {
-	const { isAuthenticated } = await auth();
+import { SignInButton, UserButton } from "@clerk/nextjs";
+import { Authenticated, Unauthenticated } from "convex/react";
 
-	// Protect the route by checking if the user is signed in
-	if (!isAuthenticated) {
-		return <div>Sign in to view this page</div>;
-	}
-	return <div>test</div>;
+export default function Home() {
+	return (
+		<>
+			<Authenticated>
+				<UserButton />
+				<Content />
+			</Authenticated>
+			<Unauthenticated>
+				<SignInButton />
+			</Unauthenticated>
+		</>
+	);
+}
+
+function Content() {
+	return <div>Authenticated content</div>;
 }

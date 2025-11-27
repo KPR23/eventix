@@ -2,7 +2,9 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-	todo: defineTable({
+	events: defineTable({
 		name: v.string(),
+		description: v.string(),
+		location: v.string(),
 	}),
 });
