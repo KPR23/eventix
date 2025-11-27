@@ -1,15 +1,11 @@
-"use client";
+import { auth } from "@clerk/nextjs/server";
 
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+export default async function Home() {
+	const { isAuthenticated } = await auth();
 
-export default function Home() {
-	const tasks = useQuery(api.events.get);
-	return (
-		<div>
-			{tasks?.map((task) => (
-				<div key={task._id}>{task.name}</div>
-			))}
-		</div>
-	);
+	// Protect the route by checking if the user is signed in
+	if (!isAuthenticated) {
+		return <div>Sign in to view this page</div>;
+	}
+	return <div>test</div>;
 }
