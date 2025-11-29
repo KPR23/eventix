@@ -1,6 +1,6 @@
-import { query } from "./_generated/server";
+import { authenticatedQuery } from "./lib/withUserCtx";
 
-export const get = query({
+export const get = authenticatedQuery({
   args: {},
   handler: async (ctx) => {
     return await ctx.db.query("events").collect();
