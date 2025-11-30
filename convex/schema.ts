@@ -1,19 +1,19 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
-enum Type {
+export enum EventType {
   Music = "Music",
   Comedy = "Comedy",
   Sports = "Sports",
 }
 
-enum SaleStatus {
+export enum SaleStatus {
   Upcoming = "Upcoming",
   OnSale = "OnSale",
   SoldOut = "SoldOut",
 }
 
-enum TicketType {
+export enum TicketType {
   Standard = "Standard",
   VIP = "VIP",
   EarlyEntrance = "EarlyEntrance",
@@ -28,9 +28,9 @@ export default defineSchema({
 
     category: v.string(),
     type: v.union(
-      v.literal(Type.Music),
-      v.literal(Type.Comedy),
-      v.literal(Type.Sports),
+      v.literal(EventType.Music),
+      v.literal(EventType.Comedy),
+      v.literal(EventType.Sports),
     ),
     organizer: v.string(),
     venue: v.id("venues"),
