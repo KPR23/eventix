@@ -26,7 +26,6 @@ export default defineSchema({
     slug: v.string(),
     participants: v.array(v.string()),
 
-    category: v.string(),
     type: v.union(
       v.literal(EventType.Music),
       v.literal(EventType.Comedy),
@@ -58,7 +57,7 @@ export default defineSchema({
   })
     .index("by_venue", ["venue"])
     .index("by_user", ["userId"])
-    .index("by_category", ["category"])
+    .index("by_type", ["type"])
     .index("by_eventStartAt", ["eventStartAt"]),
 
   venues: defineTable({
