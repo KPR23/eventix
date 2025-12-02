@@ -16,7 +16,7 @@
 
   "editor.codeActionsOnSave": {
     "source.organizeImports": "never",
-    "source.fixAll": "explicit"
+    "source.fixAll": "always"
   },
 
   "typescript.preferences.organizeImports": {
