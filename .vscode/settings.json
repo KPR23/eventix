@@ -15,8 +15,15 @@
   "editor.formatOnSave": true,
 
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit",
+    "source.organizeImports": "never",
     "source.fixAll": "explicit"
+  },
+
+  "typescript.preferences.organizeImports": {
+    "mode": "never"
+  },
+  "javascript.preferences.organizeImports": {
+    "mode": "never"
   },
 
   "[typescript]": {
