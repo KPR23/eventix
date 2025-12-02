@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <>
       <Authenticated>
-        <UserButton />
         <Content />
       </Authenticated>
       <Unauthenticated>
@@ -20,12 +19,5 @@ export default function Home() {
 
 function Content() {
   const events = useQuery(api.events.getAllEvents);
-  return (
-    <div>
-      Authenticated content
-      {events?.map((event) => (
-        <div key={event._id}>{event.title}</div>
-      ))}
-    </div>
-  );
+  return <div></div>;
 }

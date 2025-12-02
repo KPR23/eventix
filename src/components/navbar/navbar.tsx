@@ -1,0 +1,80 @@
+"use client";
+
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+import { Search, User } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import ProfileDropdown from "./profile-dropdown";
+
+const links = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/events",
+    label: "Events",
+  },
+  {
+    href: "/concerts",
+    label: "Concerts",
+  },
+  {
+    href: "/categories",
+    label: "Categories",
+  },
+  // {
+  //   href: "/contact",
+  //   label: "Contact",
+  // },
+];
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const { user } = useUser();
+
+  return (
+    <nav className="mb-10 flex min-h-18 w-full items-center justify-between border-foreground-muted border-b px-8 md:grid md:grid-cols-[1fr_1fr_1fr]">
+      <div className="flex items-center gap-12 justify-self-start">
+        <Link
+          className="font-bold font-climate-crisis text-primary text-xl uppercase tracking-wider"
+          href="/"
+        >
+          Eventix
+        </Link>
+        <ul className="hidden gap-6 md:flex md:justify-self-center">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                className={`font-semibold capitalize ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="relative flex w-full max-w-sm items-center justify-self-center">
+        <Input
+          placeholder="Search event, artist or venue"
+          className="h-10 rounded-full border-none pl-11 placeholder:text-md"
+        />
+        <Search className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground" />
+      </div>
+      <div className="hidden items-center justify-end md:flex md:justify-self-end">
+        <SignedIn>
+          <ProfileDropdown user={user} />
+        </SignedIn>
+        <SignedOut>
+          <Button className="rounded-full border-none" variant={"outline"}>
+            <Link href="/sign-in">Sign In</Link>
+          </Button>
+        </SignedOut>
+      </div>
+    </nav>
+  );
+}

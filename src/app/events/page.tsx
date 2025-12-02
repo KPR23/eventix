@@ -22,6 +22,7 @@ function Content() {
   const events = useQuery(api.events.getAllEvents);
   return (
     <div>
+      <h1 className="font-climate-crisis text-2xl uppercase">Popular events</h1>
       {events?.map((event) => (
         <div key={event._id}>
           {event.title}, {event.type}, {event.venue}, {event.saleStatus},
