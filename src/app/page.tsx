@@ -1,8 +1,7 @@
 "use client";
 
-import { SignInButton, UserButton } from "@clerk/nextjs";
-import { Authenticated, Unauthenticated, useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { SignInButton } from "@clerk/nextjs";
+import { Authenticated, Unauthenticated } from "convex/react";
 
 export default function Home() {
   return (
@@ -18,6 +17,6 @@ export default function Home() {
 }
 
 function Content() {
-  const events = useQuery(api.events.getAllEvents);
+  // const events = useQuery(api.events.getAllEvents);
   return <div></div>;
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
-import { Search, User } from "lucide-react";
-import Image from "next/image";
+import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import { Globe, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -70,9 +69,12 @@ export default function Navbar() {
           <ProfileDropdown user={user} />
         </SignedIn>
         <SignedOut>
-          <Button className="rounded-full border-none" variant={"outline"}>
-            <Link href="/sign-in">Sign In</Link>
-          </Button>
+          <div className="flex items-center gap-4">
+            <Globe className="size-5 text-muted-foreground" />
+            <Button className="rounded-full border-none" variant={"outline"}>
+              <Link href="/sign-in">Sign In</Link>
+            </Button>
+          </div>
         </SignedOut>
       </div>
     </nav>
