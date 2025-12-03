@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Climate_Crisis, Geist, Geist_Mono } from "next/font/google";
 import ConvexClientProvider from "@/components/ConvexProviderWithClerk";
 import "./globals.css";
-import Navbar from "@/components/navbar/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,11 +34,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${climateCrisis.variable} dark font-sans antialiased`}
       >
-        <ClerkProvider>
-          <ConvexClientProvider>
-            <Navbar />
-            {children}
-          </ConvexClientProvider>
+        <ClerkProvider
+          // Development
+          appearance={{
+            layout: { unsafe_disableDevelopmentModeWarnings: true },
+          }}
+        >
+          <ConvexClientProvider>{children}</ConvexClientProvider>
         </ClerkProvider>
       </body>
     </html>

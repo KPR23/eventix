@@ -2,9 +2,9 @@
 
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { Authenticated, Unauthenticated, useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 
-export default function Home() {
+export default function EventsPage() {
   return (
     <>
       <Authenticated>

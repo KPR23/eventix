@@ -18,8 +18,8 @@ const links = [
     label: "Events",
   },
   {
-    href: "/concerts",
-    label: "Concerts",
+    href: "/festivals",
+    label: "Festivals",
   },
   {
     href: "/categories",
@@ -36,8 +36,8 @@ export default function Navbar() {
   const { user } = useUser();
 
   return (
-    <nav className="mb-10 flex min-h-18 w-full items-center justify-between border-foreground-muted border-b px-8 md:grid md:grid-cols-[1fr_1fr_1fr]">
-      <div className="flex items-center gap-12 justify-self-start">
+    <nav className="mb-10 flex min-h-18 w-full items-center justify-between border-foreground-muted border-b px-10 md:grid md:grid-cols-[1fr_1fr_1fr]">
+      <div className="flex items-center gap-10 justify-self-start">
         <Link
           className="font-bold font-climate-crisis text-primary text-xl uppercase tracking-wider"
           href="/"
@@ -48,7 +48,7 @@ export default function Navbar() {
           {links.map((link) => (
             <li key={link.href}>
               <Link
-                className={`font-semibold capitalize ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
+                className={`font-semibold capitalize hover:text-primary ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
                 href={link.href}
               >
                 {link.label}
