@@ -18,6 +18,32 @@ export const getEventById = authenticatedQuery({
   },
 });
 
+export const getBySlug = authenticatedQuery({
+  args: { slug: v.string() },
+  handler: async (ctx, args) => {
+    const event = await ctx.db
+      .query("events")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .first();
+
+    if (!event) {
+      return null;
+    }
+
+    const venue = await ctx.db.get(event.venue);
+    const ticketTypes = await ctx.db
+      .query("ticketTypes")
+      .withIndex("by_event", (q) => q.eq("eventId", event._id))
+      .collect();
+
+    return {
+      ...event,
+      venue,
+      ticketTypes,
+    };
+  },
+});
+
 export const createEvent = authenticatedMutation({
   args: {
     title: v.string(),
@@ -62,7 +88,6 @@ export const createEvent = authenticatedMutation({
       ...args,
 
       slug,
-      ticketsSold: 0,
       saleStatus: SaleStatus.Upcoming,
       maxTicketsPerUser: args.maxTicketsPerUser,
 

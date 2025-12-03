@@ -1,16 +1,26 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Climate_Crisis, Geist, Geist_Mono } from "next/font/google";
+import {
+  Climate_Crisis,
+  Inter,
+  Poppins,
+  Zalando_Sans_Expanded,
+} from "next/font/google";
 import ConvexClientProvider from "@/components/ConvexProviderWithClerk";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const zalandoSansExpanded = Zalando_Sans_Expanded({
+  variable: "--font-zalando-sans-expanded",
   subsets: ["latin"],
 });
 
@@ -32,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${climateCrisis.variable} dark font-sans antialiased`}
+        className={`${inter.variable} ${poppins.variable} ${climateCrisis.variable} ${zalandoSansExpanded.variable} dark font-sans antialiased`}
       >
         <ClerkProvider
           // Development

@@ -40,8 +40,6 @@ export default defineSchema({
     eventEndAt: v.number(),
 
     imageUrl: v.string(),
-    price: v.number(),
-    ticketsSold: v.number(),
     maxTicketsPerUser: v.number(),
     saleStatus: v.union(
       v.literal(SaleStatus.Upcoming),
@@ -55,17 +53,25 @@ export default defineSchema({
     updatedAt: v.number(),
     userId: v.string(),
   })
+    .index("by_slug", ["slug"])
     .index("by_venue", ["venue"])
     .index("by_user", ["userId"])
     .index("by_type", ["type"])
-    .index("by_eventStartAt", ["eventStartAt"]),
+    .index("by_eventStartAt", ["eventStartAt"])
+    .index("by_saleStatus", ["saleStatus"])
+    .index("by_type_and_status", ["type", "saleStatus", "eventStartAt"])
+    .index("by_published", ["isPublished", "eventStartAt"]),
 
   venues: defineTable({
     name: v.string(),
     address: v.string(),
+    city: v.string(),
+    country: v.string(),
     capacity: v.number(),
     imageUrl: v.string(),
-  }).index("by_name", ["name"]),
+  })
+    .index("by_name", ["name"])
+    .index("by_city", ["city"]),
 
   ticketTypes: defineTable({
     eventId: v.id("events"),
@@ -80,7 +86,9 @@ export default defineSchema({
     sold: v.number(),
 
     createdAt: v.number(),
-  }).index("by_event", ["eventId"]),
+  })
+    .index("by_event", ["eventId"])
+    .index("by_event_and_name", ["eventId", "name"]),
 
   tickets: defineTable({
     eventId: v.id("events"),
@@ -89,8 +97,14 @@ export default defineSchema({
     userId: v.string(),
     pricePaid: v.number(),
     purchasedAt: v.number(),
+
+    qrCode: v.string(),
+    isUsed: v.boolean(),
+    usedAt: v.optional(v.number()),
   })
     .index("by_event", ["eventId"])
     .index("by_user", ["userId"])
-    .index("by_ticketType", ["ticketTypeId"]),
+    .index("by_ticketType", ["ticketTypeId"])
+    .index("by_qrCode", ["qrCode"])
+    .index("by_user_and_event", ["userId", "eventId"]),
 });

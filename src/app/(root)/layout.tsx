@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar/navbar";
+import Topbar from "@/components/navbar/topbar";
 
 export default async function RootLayout({
   children,
@@ -7,6 +8,7 @@ export default async function RootLayout({
 }>) {
   return (
     <section>
+      <Topbar />
       <Navbar />
       {children}
     </section>

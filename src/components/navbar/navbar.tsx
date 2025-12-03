@@ -36,7 +36,7 @@ export default function Navbar() {
   const { user } = useUser();
 
   return (
-    <nav className="mb-10 flex min-h-18 w-full items-center justify-between border-foreground-muted border-b px-10 md:grid md:grid-cols-[1fr_1fr_1fr]">
+    <nav className="mb-8 flex min-h-18 w-full items-center justify-between border-foreground-muted border-b px-10 md:grid md:grid-cols-[1fr_1fr_1fr]">
       <div className="flex items-center gap-10 justify-self-start">
         <Link
           className="font-bold font-climate-crisis text-primary text-xl uppercase tracking-wider"
@@ -64,8 +64,9 @@ export default function Navbar() {
         />
         <Search className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground" />
       </div>
-      <div className="hidden items-center justify-end md:flex md:justify-self-end">
+      <div className="hidden items-center justify-end gap-4 md:flex md:justify-self-end">
         <SignedIn>
+          <Globe className="size-5 text-muted-foreground" />
           <ProfileDropdown user={user} />
         </SignedIn>
         <SignedOut>

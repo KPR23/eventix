@@ -10,6 +10,7 @@
 
 import type * as events from "../events.js";
 import type * as lib_withUserCtx from "../lib/withUserCtx.js";
+import type * as seed from "../seed.js";
 
 import type {
   ApiFromModules,
@@ -20,6 +21,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   events: typeof events;
   "lib/withUserCtx": typeof lib_withUserCtx;
+  seed: typeof seed;
 }>;
 
 /**

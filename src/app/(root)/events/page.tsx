@@ -26,9 +26,9 @@ function Content() {
       {events?.map((event) => (
         <div key={event._id}>
           {event.title}, {event.type}, {event.venue}, {event.saleStatus},
-          {event.eventStartAt}, {event.eventEndAt}, {event.ticketsSold},
-          {event.maxTicketsPerUser}, {event.isPublished}, {event.externalLinks},
-          {event.createdAt}, {event.updatedAt}, {event.userId}
+          {event.eventStartAt}, {event.eventEndAt},{event.maxTicketsPerUser},{" "}
+          {event.isPublished}, {event.externalLinks},{event.createdAt},{" "}
+          {event.updatedAt}, {event.userId}
         </div>
       ))}
     </div>

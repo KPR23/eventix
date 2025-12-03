@@ -18,5 +18,5 @@ export default function Home() {
 
 function Content() {
   // const events = useQuery(api.events.getAllEvents);
-  return <div></div>;
+  return <div>Home page</div>;
 }
