@@ -1,10 +1,4 @@
-import {
-  Armchair,
-  Bot,
-  MapPinCheckInside,
-  Sparkles,
-  WandSparkles,
-} from "lucide-react";
+import { Bot, MapPinCheckInside } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { FullEvent } from "@/types/FullEvent";
@@ -42,6 +36,7 @@ export default function EventCard({ event }: { event: FullEvent }) {
           </p>
         </div>
       </Button>
+      {event.title}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
-import { authenticatedMutation, authenticatedQuery } from "./lib/withUserCtx";
+import { authenticatedMutation } from "./lib/withUserCtx";
 import { EventType, SaleStatus } from "./schema";
 
 export const getAllEvents = query({
