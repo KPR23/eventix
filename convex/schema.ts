@@ -41,6 +41,7 @@ export default defineSchema({
 
     imageUrl: v.string(),
     maxTicketsPerUser: v.number(),
+    isFavorite: v.boolean(),
     saleStatus: v.union(
       v.literal(SaleStatus.Upcoming),
       v.literal(SaleStatus.OnSale),
@@ -49,6 +50,7 @@ export default defineSchema({
 
     isPublished: v.boolean(),
     externalLinks: v.array(v.string()),
+    parentEventId: v.optional(v.id("events")),
     createdAt: v.number(),
     updatedAt: v.number(),
     userId: v.string(),
@@ -57,6 +59,7 @@ export default defineSchema({
     .index("by_venue", ["venue"])
     .index("by_user", ["userId"])
     .index("by_type", ["type"])
+    .index("by_parent", ["parentEventId"])
     .index("by_eventStartAt", ["eventStartAt"])
     .index("by_saleStatus", ["saleStatus"])
     .index("by_type_and_status", ["type", "saleStatus", "eventStartAt"])

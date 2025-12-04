@@ -1,15 +1,16 @@
 import { v } from "convex/values";
+import { query } from "./_generated/server";
 import { authenticatedMutation, authenticatedQuery } from "./lib/withUserCtx";
 import { EventType, SaleStatus } from "./schema";
 
-export const getAllEvents = authenticatedQuery({
+export const getAllEvents = query({
   args: {},
   handler: (ctx) => {
     return ctx.db.query("events").collect();
   },
 });
 
-export const getEventById = authenticatedQuery({
+export const getEventById = query({
   args: {
     eventId: v.id("events"),
   },
@@ -18,7 +19,7 @@ export const getEventById = authenticatedQuery({
   },
 });
 
-export const getBySlug = authenticatedQuery({
+export const getBySlug = query({
   args: { slug: v.string() },
   handler: async (ctx, args) => {
     const event = await ctx.db
@@ -36,11 +37,33 @@ export const getBySlug = authenticatedQuery({
       .withIndex("by_event", (q) => q.eq("eventId", event._id))
       .collect();
 
+    const children = await ctx.db
+      .query("events")
+      .withIndex("by_parent", (q) => q.eq("parentEventId", event._id))
+      .collect();
+
     return {
       ...event,
       venue,
       ticketTypes,
+      children,
     };
+  },
+});
+
+export const toggleFavorite = authenticatedMutation({
+  args: {
+    eventId: v.id("events"),
+  },
+  handler: async ({ db, userId }, args) => {
+    const event = await db.get(args.eventId);
+    if (!event || !userId) {
+      throw new Error("[Convex] Event not found or user not authenticated");
+    }
+
+    await db.patch(args.eventId, {
+      isFavorite: !event.isFavorite,
+    });
   },
 });
 
@@ -90,6 +113,7 @@ export const createEvent = authenticatedMutation({
       slug,
       saleStatus: SaleStatus.Upcoming,
       maxTicketsPerUser: args.maxTicketsPerUser,
+      isFavorite: false,
 
       userId,
       createdAt: Date.now(),

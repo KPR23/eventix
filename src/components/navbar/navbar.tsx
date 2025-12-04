@@ -1,7 +1,7 @@
 "use client";
 
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
-import { Globe, Search } from "lucide-react";
+import { Globe, Heart, Search, Tickets } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -66,7 +66,8 @@ export default function Navbar() {
       </div>
       <div className="hidden items-center justify-end gap-4 md:flex md:justify-self-end">
         <SignedIn>
-          <Globe className="size-5 text-muted-foreground" />
+          <Tickets className="size-5 text-muted-foreground" />
+          <Heart className="size-5 text-muted-foreground" />
           <ProfileDropdown user={user} />
         </SignedIn>
         <SignedOut>

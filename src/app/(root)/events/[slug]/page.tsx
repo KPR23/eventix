@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { use } from "react";
 import type { FullEvent } from "@/types/FullEvent";
 import { api } from "../../../../../convex/_generated/api";
+import EventBody from "./_components/EventBody";
 import EventHeader from "./_components/EventHeader";
 
 export default function EventPage({
@@ -24,6 +25,7 @@ export default function EventPage({
   return (
     <div className="container mx-auto px-4">
       <EventHeader event={fullEvent} />
+      <EventBody event={fullEvent} />
     </div>
   );
 }
