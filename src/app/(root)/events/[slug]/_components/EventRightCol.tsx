@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { FullEvent } from "@/types/FullEvent";
-import EventSeatMethodSelector, {
+import EventSittingMethodSelector, {
   type SeatSelectionMethod,
-} from "./EventSeatMethodSelector";
+} from "./EventSittingMethodSelector";
 
 export default function EventRightCol({ event }: { event: FullEvent }) {
   const [selected, setSelected] = useState<SeatSelectionMethod>("automatic");
@@ -10,7 +10,10 @@ export default function EventRightCol({ event }: { event: FullEvent }) {
   return (
     <div className="flex w-full flex-col gap-4">
       <h1 className="font-bold text-2xl">1. Select your seat option</h1>
-      <EventSeatMethodSelector selected={selected} setSelected={setSelected} />
+      <EventSittingMethodSelector
+        selected={selected}
+        setSelected={setSelected}
+      />
     </div>
   );
 }

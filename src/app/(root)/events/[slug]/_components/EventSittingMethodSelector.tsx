@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export type SeatSelectionMethod = "automatic" | "venue";
 
-export default function EventSeatMethodSelector({
+export default function EventSittingMethodSelector({
   selected,
   setSelected,
 }: {
