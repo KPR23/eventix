@@ -1,13 +1,16 @@
+import { useState } from "react";
 import type { FullEvent } from "@/types/FullEvent";
-import EventCard from "./EventCard";
+import EventSeatMethodSelector, {
+  type SeatSelectionMethod,
+} from "./EventSeatMethodSelector";
 
 export default function EventRightCol({ event }: { event: FullEvent }) {
+  const [selected, setSelected] = useState<SeatSelectionMethod>("automatic");
+
   return (
     <div className="flex w-full flex-col gap-4">
-      <h1 className="font-bold text-2xl">
-        {event.children.length > 0 ? "Events" : "Tickets"}
-      </h1>
-      <EventCard event={event} />
+      <h1 className="font-bold text-2xl">1. Select your seat option</h1>
+      <EventSeatMethodSelector selected={selected} setSelected={setSelected} />
     </div>
   );
 }
