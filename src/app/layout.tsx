@@ -22,6 +22,7 @@ const poppins = Poppins({
 const zalandoSansExpanded = Zalando_Sans_Expanded({
   variable: "--font-zalando-sans-expanded",
   subsets: ["latin"],
+  fallback: ["Inter"],
 });
 
 const climateCrisis = Climate_Crisis({
