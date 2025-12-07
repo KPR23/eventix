@@ -3,7 +3,7 @@
   "terminal.integrated.env.osx": {},
   "files.autoSave": "onFocusChange",
   "editor.fontSize": 14,
-  "editor.fontFamily": "Jetbrains mono",
+  "editor.fontFamily": "JetBrains Mono",
   "editor.wordWrap": "on",
   "workbench.iconTheme": "symbols",
   "console-ninja.featureSet": "Community",
@@ -67,7 +67,7 @@
   "diffEditor.codeLens": true,
   "geminicodeassist.displayInlineContextHint": false,
   "animations.Install-Method": "Apc Customize UI++",
-  "workbench.colorTheme": "Tokyo Night",
+  "workbench.colorTheme": "poimandres",
   "symbols.hidesExplorerArrows": false,
   "diffEditor.ignoreTrimWhitespace": false
 }
