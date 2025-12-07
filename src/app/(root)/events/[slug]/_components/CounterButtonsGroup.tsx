@@ -15,7 +15,7 @@ export default function CounterButtonsGroup({
       <Button
         variant="outline"
         disabled={value === 0}
-        className="flex items-center justify-center border-none"
+        className="flex size-10 items-center justify-center border-none"
         onClick={() => onChange(value - 1)}
       >
         <Minus />
@@ -25,7 +25,7 @@ export default function CounterButtonsGroup({
 
       <Button
         variant="outline"
-        className="flex items-center justify-center border-none"
+        className="flex size-10 items-center justify-center border-none"
         onClick={() => onChange(value + 1)}
         disabled={value >= maxTickets}
       >

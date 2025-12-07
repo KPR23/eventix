@@ -31,7 +31,7 @@ export default function EventAutomaticTickets({
           const maxForThisType = currentCount + remainingTickets;
 
           return (
-            <Card className="rounded-md border-none p-6" key={ticketType._id}>
+            <Card className="rounded-md border-none p-4" key={ticketType._id}>
               <CardContent className="flex items-center justify-between">
                 <CardTitle>{ticketType.name}</CardTitle>
                 <CounterButtonsGroup
