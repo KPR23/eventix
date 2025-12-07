@@ -22,7 +22,10 @@ export default function EventSittingMethodSelector({
           onClick={() => setSelected("automatic")}
         >
           <div className="flex w-full items-center justify-between">
-            <h2 className="font-bold">Automatic seat selection</h2>
+            <div className="flex w-full flex-col text-left">
+              <h2 className="font-bold text-base">Automatic seat selection</h2>
+              <p className="text-muted-foreground text-sm">{`Pick a price and we’ll choose the best seats`}</p>
+            </div>
             <div
               className={cn(
                 "size-5 rounded-full border border-muted",
@@ -30,7 +33,6 @@ export default function EventSittingMethodSelector({
               )}
             />
           </div>
-          <p className="text-muted-foreground">{`Pick a price and we’ll choose the best seats`}</p>
         </Button>
 
         <Button
@@ -42,7 +44,10 @@ export default function EventSittingMethodSelector({
           onClick={() => setSelected("venue")}
         >
           <div className="flex w-full items-center justify-between">
-            <h2 className="font-bold">Venue plan</h2>
+            <div className="flex w-full flex-col text-left">
+              <h2 className="font-bold text-base">Venue plan</h2>
+              <p className="text-muted-foreground text-sm">{`View the map and choose seats yourself`}</p>
+            </div>
             <div
               className={cn(
                 "size-5 rounded-full border border-muted",
@@ -50,7 +55,6 @@ export default function EventSittingMethodSelector({
               )}
             />
           </div>
-          <p className="text-muted-foreground">{`View the map and choose seats yourself`}</p>
         </Button>
       </div>
     </div>
