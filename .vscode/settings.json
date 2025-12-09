@@ -67,7 +67,7 @@
   "diffEditor.codeLens": true,
   "geminicodeassist.displayInlineContextHint": false,
   "animations.Install-Method": "Apc Customize UI++",
-  "workbench.colorTheme": "poimandres",
+  "workbench.colorTheme": "cursor midnight theme",
   "symbols.hidesExplorerArrows": false,
   "diffEditor.ignoreTrimWhitespace": false
 }
