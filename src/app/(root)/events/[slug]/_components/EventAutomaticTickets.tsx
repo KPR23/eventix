@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import type { FullEvent } from "@/types/FullEvent";
 import CounterButtonsGroup from "./CounterButtonsGroup";
@@ -44,6 +45,17 @@ export default function EventAutomaticTickets({
           );
         })
       )}
+      <div className="mt-4 flex justify-end gap-4">
+        <Button className="h-12 px-6" variant="outline">
+          Cancel
+        </Button>
+        <Button
+          className="flex h-12 items-center gap-2 px-6 font-semibold"
+          disabled={totalTickets <= 0}
+        >
+          Proceed to checkout {totalTickets === 0 ? "" : `(${totalTickets})`}
+        </Button>
+      </div>
     </div>
   );
 }
