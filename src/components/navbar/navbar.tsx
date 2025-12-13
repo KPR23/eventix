@@ -1,7 +1,13 @@
 "use client";
 
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
-import { Globe, Heart, Search, Tickets } from "lucide-react";
+import {
+  FavouriteIcon,
+  Globe02Icon,
+  Search01Icon,
+  TicketStarIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -62,17 +68,29 @@ export default function Navbar() {
           placeholder="Search event, artist or venue"
           className="h-10 rounded-full border-none pl-11 placeholder:text-md"
         />
-        <Search className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground" />
+        <HugeiconsIcon
+          icon={Search01Icon}
+          className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground"
+        />
       </div>
       <div className="hidden items-center justify-end gap-4 md:flex md:justify-self-end">
         <SignedIn>
-          <Tickets className="size-5 text-muted-foreground" />
-          <Heart className="size-5 text-muted-foreground" />
+          <HugeiconsIcon
+            icon={TicketStarIcon}
+            className="size-5 text-muted-foreground"
+          />
+          <HugeiconsIcon
+            icon={FavouriteIcon}
+            className="size-5 text-muted-foreground"
+          />
           <ProfileDropdown user={user} />
         </SignedIn>
         <SignedOut>
           <div className="flex items-center gap-4">
-            <Globe className="size-5 text-muted-foreground" />
+            <HugeiconsIcon
+              icon={Globe02Icon}
+              className="size-5 text-muted-foreground"
+            />
             <Button className="rounded-full border-none" variant={"outline"}>
               <Link href="/sign-in">Sign In</Link>
             </Button>

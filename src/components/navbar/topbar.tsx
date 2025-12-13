@@ -1,4 +1,5 @@
-import { CircleAlert } from "lucide-react";
+import { Alert02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
 const links = [
@@ -21,8 +22,8 @@ export default function Topbar() {
     <div className="grid h-8 w-full grid-cols-3 items-center bg-black px-10 text-sm">
       <div />
       <div className="flex items-center gap-1 justify-self-center text-muted-foreground">
-        <CircleAlert className="size-4" /> The Weeknd at PGE Narodowy was sold
-        out
+        <HugeiconsIcon icon={Alert02Icon} className="size-4" />
+        The Weeknd at PGE Narodowy was sold out
       </div>
       <ul className="flex list-none gap-4 justify-self-end">
         {links.map((link) => (

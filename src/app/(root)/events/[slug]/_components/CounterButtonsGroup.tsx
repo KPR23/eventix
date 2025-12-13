@@ -1,4 +1,5 @@
-import { Minus, Plus } from "lucide-react";
+import { Add01Icon, Remove01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@/components/ui/button";
 
 export default function CounterButtonsGroup({
@@ -18,7 +19,7 @@ export default function CounterButtonsGroup({
         className="flex size-10 items-center justify-center border-none"
         onClick={() => onChange(value - 1)}
       >
-        <Minus />
+        <HugeiconsIcon icon={Remove01Icon} />
       </Button>
 
       <p className="w-8 text-center">{value}</p>
@@ -29,7 +30,7 @@ export default function CounterButtonsGroup({
         onClick={() => onChange(value + 1)}
         disabled={value >= maxTickets}
       >
-        <Plus />
+        <HugeiconsIcon icon={Add01Icon} />
       </Button>
     </div>
   );

@@ -1,6 +1,11 @@
 import { SignOutButton } from "@clerk/nextjs";
 import type { UserResource } from "@clerk/types";
-import { LogOut, Settings, User } from "lucide-react";
+import {
+  Logout01Icon,
+  Settings01Icon,
+  UserIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -46,13 +51,13 @@ export default function ProfileDropdown({
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
             <Link href="/profile" className="cursor-pointer">
-              <User className="mr-2 h-4 w-4" />
+              <HugeiconsIcon icon={UserIcon} className="size-4" />
               <span>Profile</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/settings" className="cursor-pointer">
-              <Settings className="mr-2 h-4 w-4" />
+              <HugeiconsIcon icon={Settings01Icon} className="size-4" />
               <span>Settings</span>
             </Link>
           </DropdownMenuItem>
@@ -60,7 +65,7 @@ export default function ProfileDropdown({
         <DropdownMenuSeparator />
         <SignOutButton>
           <DropdownMenuItem className="cursor-pointer">
-            <LogOut className="mr-2 h-4 w-4" />
+            <HugeiconsIcon icon={Logout01Icon} className="size-4" />
             <span>Log out</span>
           </DropdownMenuItem>
         </SignOutButton>

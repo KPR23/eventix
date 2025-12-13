@@ -1,15 +1,16 @@
 "use client";
 
+import {
+  Calendar03Icon,
+  Clock01Icon,
+  FavouriteIcon,
+  Link04Icon,
+  Location01Icon,
+  Tick02Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useMutation } from "convex/react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  CalendarFold,
-  Check,
-  Clock,
-  Heart,
-  Link as LinkIcon,
-  MapPin,
-} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -38,7 +39,8 @@ export default function EventHeader({ event }: { event: FullEvent }) {
               animate={{ scale: event.isFavorite ? 1.1 : 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <Heart
+              <HugeiconsIcon
+                icon={FavouriteIcon}
                 className="size-5"
                 fill={event.isFavorite ? "currentColor" : "none"}
               />
@@ -47,7 +49,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
         </Button>
         <Button
           asChild
-          className="h-12 w-12 rounded-none rounded-r-full border-none text-muted-foreground hover:bg-input/30"
+          className="h-12 w-12 items-center justify-end rounded-none rounded-r-full border-none text-muted-foreground hover:bg-input/30"
           variant={"outline"}
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
@@ -65,7 +67,10 @@ export default function EventHeader({ event }: { event: FullEvent }) {
                   exit={{ scale: 0, opacity: 0 }}
                   transition={{ duration: 0.1 }}
                 >
-                  <Check className="text-green-500" />
+                  <HugeiconsIcon
+                    icon={Tick02Icon}
+                    className="size-5 text-green-500"
+                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -75,7 +80,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
                   exit={{ scale: 0, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <LinkIcon />
+                  <HugeiconsIcon icon={Link04Icon} className="size-5" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -101,7 +106,10 @@ export default function EventHeader({ event }: { event: FullEvent }) {
           variant="outline"
           className="flex h-10 items-center gap-2 rounded-none border-x-0 px-6 font-medium text-base"
         >
-          <CalendarFold className="size-4 text-muted-foreground" />
+          <HugeiconsIcon
+            icon={Calendar03Icon}
+            className="size-4 text-muted-foreground"
+          />
           <span className="text-muted-foreground">
             {new Date(event.eventStartAt).toLocaleDateString("en-GB", {
               day: "numeric",
@@ -115,7 +123,10 @@ export default function EventHeader({ event }: { event: FullEvent }) {
           variant="outline"
           className="flex h-10 items-center gap-2 rounded-none border-r-0 px-6 font-medium text-base"
         >
-          <Clock className="size-4 text-muted-foreground" />
+          <HugeiconsIcon
+            icon={Clock01Icon}
+            className="size-4 text-muted-foreground"
+          />
           <span className="text-muted-foreground">
             {new Date(event.eventStartAt).toLocaleTimeString("en-GB", {
               hour: "numeric",
@@ -128,7 +139,10 @@ export default function EventHeader({ event }: { event: FullEvent }) {
           variant="outline"
           className="flex h-10 items-center gap-2 rounded-none rounded-r-full px-6 font-medium text-base"
         >
-          <MapPin className="size-4 text-muted-foreground" />
+          <HugeiconsIcon
+            icon={Location01Icon}
+            className="size-4 text-muted-foreground"
+          />
           <span className="text-muted-foreground">{event.venue.city}</span>
         </Badge>
       </div>

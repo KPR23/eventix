@@ -1,3 +1,8 @@
+import {
+  AiSearch02Icon,
+  CursorCircleSelection02Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -22,9 +27,17 @@ export default function EventSittingMethodSelector({
           onClick={() => setSelected("automatic")}
         >
           <div className="flex w-full items-center justify-between">
-            <div className="flex w-full flex-col text-left">
-              <h2 className="font-bold text-base">Automatic seat selection</h2>
-              <p className="text-muted-foreground text-sm">{`Pick a price and we’ll choose the best seats`}</p>
+            <div className="flex w-full items-center justify-start gap-4 text-left">
+              <HugeiconsIcon
+                icon={AiSearch02Icon}
+                className={`size-7 ${selected === "automatic" && "text-primary"}`}
+              />
+              <div className="flex flex-col">
+                <h2 className="font-bold text-base">
+                  Automatic seat selection
+                </h2>
+                <p className="text-muted-foreground text-sm">{`Pick a price and we’ll choose the best seats`}</p>
+              </div>
             </div>
             <div
               className={cn(
@@ -44,9 +57,15 @@ export default function EventSittingMethodSelector({
           onClick={() => setSelected("venue")}
         >
           <div className="flex w-full items-center justify-between">
-            <div className="flex w-full flex-col text-left">
-              <h2 className="font-bold text-base">Venue plan</h2>
-              <p className="text-muted-foreground text-sm">{`View the map and choose seats yourself`}</p>
+            <div className="flex w-full items-center justify-start gap-4 text-left">
+              <HugeiconsIcon
+                icon={CursorCircleSelection02Icon}
+                className={`size-7 ${selected === "venue" && "text-primary"}`}
+              />
+              <div className="flex flex-col">
+                <h2 className="font-bold text-base">Venue plan</h2>
+                <p className="text-muted-foreground text-sm">{`View the map and choose seats yourself`}</p>
+              </div>
             </div>
             <div
               className={cn(
