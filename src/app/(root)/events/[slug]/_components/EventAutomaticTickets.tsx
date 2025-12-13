@@ -34,7 +34,12 @@ export default function EventAutomaticTickets({
           return (
             <Card className="rounded-md border-none p-4" key={ticketType._id}>
               <CardContent className="flex items-center justify-between">
-                <CardTitle>{ticketType.name}</CardTitle>
+                <div className="flex items-center gap-4">
+                  <CardTitle>{ticketType.name}</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    {ticketType.description}
+                  </p>
+                </div>
                 <CounterButtonsGroup
                   value={currentCount}
                   onChange={(val) => setTickets(ticketType._id, val)}
@@ -46,14 +51,15 @@ export default function EventAutomaticTickets({
         })
       )}
       <div className="mt-4 flex justify-end gap-4">
-        <Button className="h-12 px-6" variant="outline">
+        <Button className="h-12 border-none px-6" variant="outline">
           Cancel
         </Button>
         <Button
           className="flex h-12 items-center gap-2 px-6 font-semibold"
           disabled={totalTickets <= 0}
         >
-          Proceed to checkout {totalTickets === 0 ? "" : `(${totalTickets})`}
+          Proceed to checkout
+          {/* {totalTickets === 0 ? "" : `(${totalTickets})`} */}
         </Button>
       </div>
     </div>

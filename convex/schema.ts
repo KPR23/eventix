@@ -84,6 +84,7 @@ export default defineSchema({
       v.literal(TicketType.VIP),
       v.literal(TicketType.EarlyEntrance),
     ),
+    description: v.string(),
     price: v.number(),
     quantity: v.number(),
     sold: v.number(),

@@ -151,6 +151,7 @@ export const seedData = mutation({
       name: TicketType.Standard,
       price: 199,
       quantity: 30000,
+      description: "Standard ticket",
       sold: 15000,
       createdAt: now - 14 * dayMs,
     });
@@ -160,6 +161,7 @@ export const seedData = mutation({
       name: TicketType.VIP,
       price: 599,
       quantity: 500,
+      description: "VIP ticket",
       sold: 320,
       createdAt: now - 14 * dayMs,
     });
@@ -169,6 +171,7 @@ export const seedData = mutation({
       name: TicketType.EarlyEntrance,
       price: 299,
       quantity: 1000,
+      description: "Early entrance ticket",
       sold: 850,
       createdAt: now - 14 * dayMs,
     });
@@ -179,6 +182,7 @@ export const seedData = mutation({
       name: TicketType.Standard,
       price: 79,
       quantity: 400,
+      description: "Standard ticket",
       sold: 0,
       createdAt: now - 5 * dayMs,
     });
@@ -188,6 +192,7 @@ export const seedData = mutation({
       name: TicketType.VIP,
       price: 199,
       quantity: 50,
+      description: "VIP ticket",
       sold: 0,
       createdAt: now - 5 * dayMs,
     });
@@ -198,6 +203,7 @@ export const seedData = mutation({
       name: TicketType.Standard,
       price: 120,
       quantity: 1500,
+      description: "Standard ticket",
       sold: 1500,
       createdAt: now - 60 * dayMs,
     });
@@ -207,6 +213,7 @@ export const seedData = mutation({
       name: TicketType.VIP,
       price: 350,
       quantity: 100,
+      description: "VIP ticket",
       sold: 100,
       createdAt: now - 60 * dayMs,
     });
@@ -217,6 +224,7 @@ export const seedData = mutation({
       name: TicketType.Standard,
       price: 150,
       quantity: 40000,
+      description: "Standard ticket",
       sold: 22000,
       createdAt: now - 20 * dayMs,
     });
@@ -226,6 +234,7 @@ export const seedData = mutation({
       name: TicketType.VIP,
       price: 499,
       quantity: 200,
+      description: "VIP ticket",
       sold: 180,
       createdAt: now - 20 * dayMs,
     });

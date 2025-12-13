@@ -143,7 +143,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
             icon={Location01Icon}
             className="size-4 text-muted-foreground"
           />
-          <span className="text-muted-foreground">{event.venue.city}</span>
+          <span className="text-muted-foreground">{`${event.venue.name}, ${event.venue.city}`}</span>
         </Badge>
       </div>
     </div>
