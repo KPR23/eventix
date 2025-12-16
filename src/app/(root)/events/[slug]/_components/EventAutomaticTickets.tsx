@@ -1,7 +1,8 @@
-import { ShoppingBagAddIcon } from "@hugeicons/core-free-icons";
+import { Cancel01Icon, ShoppingBagAddIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { useState } from "react";
+import { toast } from "sonner";
 import EventixLogo from "@/components/EventixLogo";
 import {
   AlertDialog,
@@ -28,42 +29,43 @@ export default function EventAutomaticTickets({
   tickets: Record<string, number>;
   setTickets: (ticketId: string, count: number) => void;
 }) {
-  const getBestAvailableSeats = useMutation(
-    api.tickets.getBestAvailableSeats.getBestAvailableSeats,
-  );
+  const [orderId, setOrderId] = useState<Id<"orders"> | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const createOrder = useMutation(api.orders.createOrder);
+  const order = useQuery(api.orders.getOrder, orderId ? { orderId } : "skip");
 
   const totalTickets = Object.values(tickets).reduce(
     (acc, curr) => acc + curr,
     0,
   );
 
-  const [allocatedSeats, setAllocatedSeats] = useState<
-    {
-      section: string;
-      row: number;
-      seat: number;
-    }[]
-  >([]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleAddToCart = async () => {
     setIsLoading(true);
     try {
-      const { selectedSeats } = await getBestAvailableSeats({
+      const items = Object.entries(tickets)
+        .filter(([, quantity]) => quantity > 0)
+        .map(([ticketTypeId, quantity]) => ({
+          ticketTypeId: ticketTypeId as Id<"ticketTypes">,
+          quantity,
+        }));
+
+      if (items.length === 0) {
+        toast.error("Wybierz przynajmniej jeden bilet.");
+        return;
+      }
+
+      const res = await createOrder({
         eventId: event._id,
-        ticketRequests: Object.entries(tickets).map(
-          ([ticketTypeId, count]) => ({
-            ticketTypeId: ticketTypeId as Id<"ticketTypes">,
-            quantity: count,
-          }),
-        ),
+        items,
       });
-      setAllocatedSeats(selectedSeats);
+
+      setOrderId(res.orderId);
       setIsDialogOpen(true);
     } catch (error) {
-      console.error("Failed to fetch seats:", error);
-      // TODO: Handle error nicely
+      toast.error("Failed to fetch seats");
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -86,11 +88,14 @@ export default function EventAutomaticTickets({
           return (
             <Card className="rounded-md border-none p-4" key={ticketType._id}>
               <CardContent className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="mr-8 flex w-full items-center gap-6">
                   <CardTitle>{ticketType.name}</CardTitle>
-                  <p className="text-muted-foreground text-sm">
-                    {ticketType.description}
-                  </p>
+                  <div className="flex w-full items-center justify-between text-sm">
+                    <p className="text-muted-foreground">
+                      {ticketType.description}
+                    </p>
+                    <span className="font-semibold">${ticketType.price}</span>
+                  </div>
                 </div>
                 <CounterButtonsGroup
                   value={currentCount}
@@ -117,76 +122,63 @@ export default function EventAutomaticTickets({
               className="size-5"
               strokeWidth={2}
             />
-            {isLoading ? "Loading..." : "Add to cart"}
+            {isLoading ? "Adding to cart..." : "Add to cart"}
           </Button>
-          <AlertDialogContent className="overflow-hidden border-none bg-card p-0">
-            <AlertDialogHeader className="flex items-center justify-between">
-              <div className="mb-2 flex w-full items-center justify-center bg-primary py-1">
-                <EventixLogo
-                  className="justify-self-center text-white"
-                  fontSize="text-md"
-                />
+          <AlertDialogContent className="rounded-md border-none bg-card p-0">
+            <AlertDialogHeader className="flex items-center justify-between gap-0">
+              <div className="my-3 grid w-full grid-cols-[1fr_auto_1fr] items-center justify-center px-4">
+                <div></div>
+
+                <div className="flex items-center justify-center gap-2 font-bold font-zalando text-md text-muted-foreground uppercase">
+                  <EventixLogo
+                    fontSize="text-md"
+                    className="relative bottom-[0.6px]"
+                  />{" "}
+                  order
+                </div>
+
+                <Button
+                  variant="ghost"
+                  className="flex h-6 w-6 items-center justify-center justify-self-end rounded-full"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  <HugeiconsIcon icon={Cancel01Icon} />
+                </Button>
               </div>
-              <div className="flex w-full flex-col px-6">
-                <AlertDialogTitle>Tickets</AlertDialogTitle>
-
-                <div className="flex flex-col gap-2">
-                  {(() => {
-                    let seatIndex = 0;
-                    return event.ticketTypes.map((type) => {
-                      const count = tickets[type._id] || 0;
-                      if (count === 0) return null;
-
-                      const seatsForType = allocatedSeats.slice(
-                        seatIndex,
-                        seatIndex + count,
-                      );
-                      seatIndex += count;
-
-                      return (
-                        <div key={type._id} className="flex flex-col gap-1">
-                          <Card className="border-none bg-muted/50">
-                            <CardContent className="flex items-center justify-between p-3 text-sm">
-                              <span className="font-medium">{type.name}</span>
-                              <span className="font-semibold">{count}</span>
-                            </CardContent>
-                          </Card>
-                          {seatsForType.length > 0 && (
-                            <div className="pl-4 text-muted-foreground text-xs">
-                              {seatsForType.map((seat) => (
-                                <div
-                                  key={`${seat.section}-${seat.row}-${seat.seat}`}
-                                  className="flex gap-2"
-                                >
-                                  <span>
-                                    Section: {seat.section}, Row: {seat.row},
-                                    Seat: {seat.seat}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    });
-                  })()}
-                  <div className="mt-2 flex items-center justify-between border-t pt-2">
-                    <p className="font-semibold text-muted-foreground text-sm">
-                      Total
+              <div className="mb-4 grid w-full grid-cols-2 border-y bg-secondary px-4">
+                <AlertDialogTitle className="flex items-center justify-center border-r py-4 pr-4 font-semibold text-muted-foreground text-sm">
+                  {event.title}
+                </AlertDialogTitle>
+                <div className="flex items-center justify-center py-4 pl-4 font-semibold text-muted-foreground text-sm">
+                  {new Date(event.eventStartAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </div>
+              </div>
+              <div className="flex w-full flex-col gap-4 px-6">
+                {order?.items.map((item) => (
+                  <div
+                    key={item.ticketTypeId}
+                    className="flex justify-between text-sm"
+                  >
+                    <p className="font-medium">
+                      {item.quantity > 1 ? `${item.quantity}x ` : ""}
+                      {item.name}
                     </p>
-                    <p className="font-semibold">{totalTickets}</p>
+                    <p className="font-semibold">${item.price}</p>
                   </div>
+                ))}
+
+                <div className="mt-4 flex items-center justify-between border-t pt-4">
+                  <p className="font-semibold text-base">Total</p>
+                  <p className="font-bold text-lg">${order?.totalAmount}</p>
                 </div>
               </div>
             </AlertDialogHeader>
             <AlertDialogFooter className="p-6 pt-0">
-              <AlertDialogCancel
-                className="border-none"
-                onClick={() => setIsDialogOpen(false)}
-              >
-                Cancel
-              </AlertDialogCancel>
-              <AlertDialogAction className="bg-primary text-primary-foreground">
+              <AlertDialogAction className="flex w-full items-center justify-center bg-primary py-6 font-bold text-md text-primary-foreground">
                 Buy tickets
               </AlertDialogAction>
             </AlertDialogFooter>

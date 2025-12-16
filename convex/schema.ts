@@ -13,6 +13,12 @@ export enum SaleStatus {
   SoldOut = "SoldOut",
 }
 
+export enum OrderStatus {
+  PendingPayment = "PendingPayment",
+  Paid = "Paid",
+  Canceled = "Canceled",
+}
+
 export enum TicketType {
   Standard = "Standard",
   VIP = "VIP",
@@ -111,4 +117,30 @@ export default defineSchema({
     .index("by_ticketType", ["ticketTypeId"])
     .index("by_qrCode", ["qrCode"])
     .index("by_user_and_event", ["userId", "eventId"]),
+
+  orders: defineTable({
+    eventId: v.id("events"),
+    userId: v.string(),
+
+    items: v.array(
+      v.object({
+        ticketTypeId: v.id("ticketTypes"),
+        quantity: v.number(),
+        price: v.number(),
+      }),
+    ),
+
+    totalAmount: v.number(),
+    status: v.union(
+      v.literal(OrderStatus.PendingPayment),
+      v.literal(OrderStatus.Paid),
+      v.literal(OrderStatus.Canceled),
+    ),
+
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_event", ["eventId"])
+    .index("by_status", ["status"]),
 });

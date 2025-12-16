@@ -10,10 +10,8 @@
 
 import type * as events from "../events.js";
 import type * as lib_withUserCtx from "../lib/withUserCtx.js";
+import type * as orders from "../orders.js";
 import type * as seed from "../seed.js";
-import type * as tickets_createTicket from "../tickets/createTicket.js";
-import type * as tickets_fetchSoldSeats from "../tickets/fetchSoldSeats.js";
-import type * as tickets_getBestAvailableSeats from "../tickets/getBestAvailableSeats.js";
 
 import type {
   ApiFromModules,
@@ -24,10 +22,8 @@ import type {
 declare const fullApi: ApiFromModules<{
   events: typeof events;
   "lib/withUserCtx": typeof lib_withUserCtx;
+  orders: typeof orders;
   seed: typeof seed;
-  "tickets/createTicket": typeof tickets_createTicket;
-  "tickets/fetchSoldSeats": typeof tickets_fetchSoldSeats;
-  "tickets/getBestAvailableSeats": typeof tickets_getBestAvailableSeats;
 }>;
 
 /**

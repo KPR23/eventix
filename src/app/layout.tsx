@@ -8,6 +8,7 @@ import {
 } from "next/font/google";
 import ConvexClientProvider from "@/components/ConvexProviderWithClerk";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,7 +52,10 @@ export default function RootLayout({
             layout: { unsafe_disableDevelopmentModeWarnings: true },
           }}
         >
-          <ConvexClientProvider>{children}</ConvexClientProvider>
+          <ConvexClientProvider>
+            {children}
+            <Toaster />
+          </ConvexClientProvider>
         </ClerkProvider>
       </body>
     </html>
