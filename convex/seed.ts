@@ -1,11 +1,9 @@
-// convex/seed.ts
 import { mutation } from "./_generated/server";
 import { EventType, SaleStatus, TicketType } from "./schema";
 
 export const seedData = mutation({
   args: {},
   handler: async (ctx) => {
-    // Clear existing data (optional)
     const existingEvents = await ctx.db.query("events").collect();
     for (const event of existingEvents) {
       await ctx.db.delete(event._id);
@@ -16,27 +14,12 @@ export const seedData = mutation({
       await ctx.db.delete(venue._id);
     }
 
-    // Create venues
     const arenaId = await ctx.db.insert("venues", {
       name: "National Stadium",
       address: "123 Stadium Road",
       city: "Warsaw",
       country: "Poland",
       capacity: 50000,
-      sections: [
-        {
-          name: "Section A",
-          priority: 1,
-          rows: 10,
-          seatsPerRow: 10,
-        },
-        {
-          name: "Section B",
-          priority: 2,
-          rows: 10,
-          seatsPerRow: 10,
-        },
-      ],
       imageUrl: "https://picsum.photos/800/600?random=1",
     });
 
@@ -46,20 +29,6 @@ export const seedData = mutation({
       city: "Krakow",
       country: "Poland",
       capacity: 500,
-      sections: [
-        {
-          name: "Section A",
-          priority: 1,
-          rows: 10,
-          seatsPerRow: 10,
-        },
-        {
-          name: "Section B",
-          priority: 2,
-          rows: 10,
-          seatsPerRow: 10,
-        },
-      ],
       imageUrl: "https://picsum.photos/800/600?random=2",
     });
 
@@ -69,27 +38,12 @@ export const seedData = mutation({
       city: "Gdansk",
       country: "Poland",
       capacity: 2000,
-      sections: [
-        {
-          name: "Section A",
-          priority: 1,
-          rows: 10,
-          seatsPerRow: 10,
-        },
-        {
-          name: "Section B",
-          priority: 2,
-          rows: 10,
-          seatsPerRow: 10,
-        },
-      ],
       imageUrl: "https://picsum.photos/800/600?random=3",
     });
 
     const now = Date.now();
     const dayMs = 24 * 60 * 60 * 1000;
 
-    // Create events
     const event1 = await ctx.db.insert("events", {
       title: "Rock Festival 2025",
       description:
@@ -187,7 +141,6 @@ export const seedData = mutation({
       userId: "user_789",
     });
 
-    // Create ticket types for event 1
     await ctx.db.insert("ticketTypes", {
       eventId: event1,
       name: TicketType.Standard,
@@ -218,7 +171,6 @@ export const seedData = mutation({
       createdAt: now - 14 * dayMs,
     });
 
-    // Create ticket types for event 2
     await ctx.db.insert("ticketTypes", {
       eventId: event2,
       name: TicketType.Standard,
@@ -239,7 +191,6 @@ export const seedData = mutation({
       createdAt: now - 5 * dayMs,
     });
 
-    // Create ticket types for event 3
     await ctx.db.insert("ticketTypes", {
       eventId: event3,
       name: TicketType.Standard,
@@ -260,7 +211,6 @@ export const seedData = mutation({
       createdAt: now - 60 * dayMs,
     });
 
-    // Create ticket types for event 4
     await ctx.db.insert("ticketTypes", {
       eventId: event4,
       name: TicketType.Standard,
