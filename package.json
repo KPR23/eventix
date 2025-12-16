@@ -13,6 +13,7 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",
     "@clerk/nextjs": "^6.35.5",
+    "@clerk/types": "^4.101.7",
     "@hugeicons/core-free-icons": "^2.0.0",
     "@hugeicons/react": "^1.1.1",
     "@radix-ui/react-alert-dialog": "^1.1.15",

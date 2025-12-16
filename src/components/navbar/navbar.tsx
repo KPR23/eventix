@@ -10,6 +10,7 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import EventixLogo from "../EventixLogo";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import ProfileDropdown from "./profile-dropdown";
@@ -44,11 +45,8 @@ export default function Navbar() {
   return (
     <nav className="mb-8 flex min-h-18 w-full items-center justify-between border-foreground-muted border-b px-10 md:grid md:grid-cols-[1fr_1fr_1fr]">
       <div className="flex items-center gap-10 justify-self-start">
-        <Link
-          className="font-bold font-climate-crisis text-primary text-xl uppercase tracking-wider"
-          href="/"
-        >
-          Eventix
+        <Link href="/">
+          <EventixLogo />
         </Link>
         <ul className="hidden gap-6 md:flex md:justify-self-center">
           {links.map((link) => (

@@ -18,7 +18,7 @@ export default function EventRightCol({ event }: { event: FullEvent }) {
   return (
     <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-xl">1. Choose your seating option</h1>
+        <h1 className="font-medium text-lg">1. Choose your seating option</h1>
         <EventSittingMethodSelector
           selected={selected}
           setSelected={setSelected}

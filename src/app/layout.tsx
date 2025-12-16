@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${poppins.variable} ${climateCrisis.variable} ${zalandoSansExpanded.variable} dark font-sans antialiased`}
+        className={`${inter.variable} ${poppins.variable} ${climateCrisis.variable} ${zalandoSansExpanded.variable} dark suppressHydrationWarning font-sans antialiased`}
       >
         <ClerkProvider
           // Development

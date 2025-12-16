@@ -23,6 +23,20 @@ export const seedData = mutation({
       city: "Warsaw",
       country: "Poland",
       capacity: 50000,
+      sections: [
+        {
+          name: "Section A",
+          priority: 1,
+          rows: 10,
+          seatsPerRow: 10,
+        },
+        {
+          name: "Section B",
+          priority: 2,
+          rows: 10,
+          seatsPerRow: 10,
+        },
+      ],
       imageUrl: "https://picsum.photos/800/600?random=1",
     });
 
@@ -32,6 +46,20 @@ export const seedData = mutation({
       city: "Krakow",
       country: "Poland",
       capacity: 500,
+      sections: [
+        {
+          name: "Section A",
+          priority: 1,
+          rows: 10,
+          seatsPerRow: 10,
+        },
+        {
+          name: "Section B",
+          priority: 2,
+          rows: 10,
+          seatsPerRow: 10,
+        },
+      ],
       imageUrl: "https://picsum.photos/800/600?random=2",
     });
 
@@ -41,6 +69,20 @@ export const seedData = mutation({
       city: "Gdansk",
       country: "Poland",
       capacity: 2000,
+      sections: [
+        {
+          name: "Section A",
+          priority: 1,
+          rows: 10,
+          seatsPerRow: 10,
+        },
+        {
+          name: "Section B",
+          priority: 2,
+          rows: 10,
+          seatsPerRow: 10,
+        },
+      ],
       imageUrl: "https://picsum.photos/800/600?random=3",
     });
 

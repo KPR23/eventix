@@ -96,7 +96,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
         >
           <Badge
             variant="outline"
-            className="flex h-10 items-center gap-2 rounded-none rounded-l-full px-6 font-medium text-base"
+            className="flex h-10 items-center rounded-none rounded-l-full border-r-0 pr-6 pl-7 font-medium text-base"
           >
             {event.type}
           </Badge>
@@ -104,7 +104,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
 
         <Badge
           variant="outline"
-          className="flex h-10 items-center gap-2 rounded-none border-x-0 px-6 font-medium text-base"
+          className="flex h-10 items-center gap-2 rounded-none px-6 font-medium text-base"
         >
           <HugeiconsIcon
             icon={Calendar03Icon}
@@ -121,7 +121,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
 
         <Badge
           variant="outline"
-          className="flex h-10 items-center gap-2 rounded-none border-r-0 px-6 font-medium text-base"
+          className="flex h-10 items-center gap-2 rounded-none border-x-0 px-6 font-medium text-base"
         >
           <HugeiconsIcon
             icon={Clock01Icon}
@@ -137,7 +137,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
 
         <Badge
           variant="outline"
-          className="flex h-10 items-center gap-2 rounded-none rounded-r-full px-6 font-medium text-base"
+          className="flex h-10 items-center gap-2 rounded-none rounded-r-full pr-7 pl-6 font-medium text-base"
         >
           <HugeiconsIcon
             icon={Location01Icon}

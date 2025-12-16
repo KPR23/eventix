@@ -72,6 +72,15 @@ export default defineSchema({
     country: v.string(),
     capacity: v.number(),
     imageUrl: v.string(),
+
+    sections: v.array(
+      v.object({
+        name: v.string(),
+        priority: v.number(),
+        rows: v.number(),
+        seatsPerRow: v.number(),
+      }),
+    ),
   })
     .index("by_name", ["name"])
     .index("by_city", ["city"]),
@@ -101,6 +110,10 @@ export default defineSchema({
     userId: v.string(),
     pricePaid: v.number(),
     purchasedAt: v.number(),
+
+    seatSector: v.string(),
+    seatRow: v.string(),
+    seatNumber: v.string(),
 
     qrCode: v.string(),
     isUsed: v.boolean(),
