@@ -7,7 +7,6 @@ import EventixLogo from "@/components/EventixLogo";
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
