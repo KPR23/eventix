@@ -1,4 +1,4 @@
-import { Alert02Icon } from "@hugeicons/core-free-icons";
+import { InformationCircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
@@ -18,14 +18,20 @@ const links = [
 ];
 
 export default function Topbar() {
+  const content = "The Weeknd at PGE Narodowy was sold out";
+
   return (
-    <div className="grid h-8 w-full grid-cols-3 items-center bg-black px-10 text-sm">
-      <div />
-      <div className="flex items-center gap-1 justify-self-center text-muted-foreground">
-        <HugeiconsIcon icon={Alert02Icon} className="size-4" />
-        The Weeknd at PGE Narodowy was sold out
+    <div className="flex w-full justify-center bg-secondary px-4 py-2 font-medium text-muted-foreground md:text-sm lg:grid lg:grid-cols-[1fr_auto_1fr]">
+      <div className="hidden lg:block"></div>
+      <div className="flex items-center gap-2">
+        <HugeiconsIcon
+          icon={InformationCircleIcon}
+          className="size-5 min-w-5 md:size-4 md:min-w-4"
+          strokeWidth={2}
+        />
+        <p className="block">{content}</p>
       </div>
-      <ul className="flex list-none gap-4 justify-self-end">
+      <ul className="hidden list-none gap-4 justify-self-end px-10 lg:flex">
         {links.map((link) => (
           <li key={link.href}>
             <Link
