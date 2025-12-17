@@ -23,7 +23,7 @@ export default function EventPage({
   const fullEvent = event as FullEvent;
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto">
       <EventHeader event={fullEvent} />
       <EventBody event={fullEvent} />
     </div>

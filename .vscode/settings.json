@@ -7,7 +7,7 @@
   "editor.wordWrap": "on",
   "workbench.iconTheme": "symbols",
   "console-ninja.featureSet": "Community",
-
+  "css.validate": false,
   "prettier.enable": false,
   "prettier.useTabs": false,
 

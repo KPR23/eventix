@@ -16,7 +16,7 @@ export default function EventSittingMethodSelector({
   setSelected: (selected: SeatSelectionMethod) => void;
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex min-w-fit flex-col gap-4">
       <div className="grid max-h-80 w-full grid-cols-1 gap-4 xl:grid-cols-2">
         <Button
           variant="outline"
@@ -26,8 +26,8 @@ export default function EventSittingMethodSelector({
           )}
           onClick={() => setSelected("automatic")}
         >
-          <div className="flex w-full items-center justify-between">
-            <div className="flex w-full items-center justify-start gap-4 text-left">
+          <div className="flex w-full items-center justify-between gap-6">
+            <div className="flex items-center justify-start gap-4 text-left">
               <HugeiconsIcon
                 icon={AiSearch02Icon}
                 className={`size-7 ${selected === "automatic" && "text-primary"}`}
@@ -36,7 +36,7 @@ export default function EventSittingMethodSelector({
                 <h2 className="font-bold text-base">
                   Automatic seat selection
                 </h2>
-                <p className="text-muted-foreground text-sm">{`Pick a price and we’ll choose the best seats`}</p>
+                <p className="hidden text-muted-foreground text-sm lg:block">{`Pick a price and we’ll choose the best seats`}</p>
               </div>
             </div>
             <div
@@ -57,14 +57,14 @@ export default function EventSittingMethodSelector({
           onClick={() => setSelected("venue")}
         >
           <div className="flex w-full items-center justify-between">
-            <div className="flex w-full items-center justify-start gap-4 text-left">
+            <div className="flex items-center justify-start gap-4 text-left">
               <HugeiconsIcon
                 icon={CursorCircleSelection02Icon}
                 className={`size-7 ${selected === "venue" && "text-primary"}`}
               />
               <div className="flex flex-col">
                 <h2 className="font-bold text-base">Venue plan</h2>
-                <p className="text-muted-foreground text-sm">{`View the map and choose seats yourself`}</p>
+                <p className="hidden text-muted-foreground text-sm lg:block">{`View the map and choose seats yourself`}</p>
               </div>
             </div>
             <div

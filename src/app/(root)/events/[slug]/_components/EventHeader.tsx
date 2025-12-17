@@ -23,8 +23,8 @@ export default function EventHeader({ event }: { event: FullEvent }) {
   const [isCopied, setIsCopied] = useState(false);
 
   return (
-    <div className="flex gap-4 md:grid md:grid-cols-[1fr_auto]">
-      <h1 className="font-bold font-zalando text-5xl uppercase">
+    <div className="grid grid-cols-[1fr_auto] gap-4">
+      <h1 className="font-bold font-zalando uppercase sm:text-3xl md:text-4xl lg:text-5xl">
         {event.title}
       </h1>
 
@@ -88,7 +88,7 @@ export default function EventHeader({ event }: { event: FullEvent }) {
         </Button>
       </div>
 
-      <div className="flex items-center">
+      <div className="col-span-2 flex w-full flex-wrap items-center">
         <Link
           href={"/"}
           target="_blank"

@@ -4,7 +4,7 @@ import EventRightCol from "./EventRightCol";
 
 export default function EventBody({ event }: { event: FullEvent }) {
   return (
-    <div className="grid-[1fr_auto] mt-8 flex gap-12">
+    <div className="mt-8 grid grid-cols-[1fr_auto] gap-12">
       <EventLeftCol event={event} />
       <EventRightCol event={event} />
     </div>
