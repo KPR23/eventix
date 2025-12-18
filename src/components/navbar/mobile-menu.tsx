@@ -1,10 +1,5 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import {
-  FavouriteIcon,
-  Globe02Icon,
-  TicketStarIcon,
-  UserIcon,
-} from "@hugeicons/core-free-icons";
+import { Globe02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
