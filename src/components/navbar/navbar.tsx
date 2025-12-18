@@ -79,8 +79,8 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <>
-      <nav className="sticky top-0 z-60 flex h-[72px] w-full items-center justify-between gap-4 border-b bg-sidebar px-4 sm:px-6 lg:px-10">
+    <div className="sticky top-0 z-60 w-full">
+      <nav className="relative z-20 flex h-[72px] w-full items-center justify-between gap-4 border-b bg-sidebar px-4 sm:px-6 lg:px-10">
         <div className="flex items-center gap-10">
           <div>
             <Link href="/">
@@ -177,6 +177,6 @@ export default function Navbar() {
           />
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
