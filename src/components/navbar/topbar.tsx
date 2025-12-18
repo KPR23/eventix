@@ -21,7 +21,7 @@ export default function Topbar() {
   const content = "The Weeknd at PGE Narodowy was sold out";
 
   return (
-    <div className="flex w-full justify-center bg-secondary px-4 py-2 font-medium text-muted-foreground sm:text-sm lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-0">
+    <div className="flex w-full justify-center bg-muted px-4 py-2 font-medium text-muted-foreground sm:text-sm lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-0">
       <div className="hidden lg:block"></div>
       <div className="flex items-center gap-2">
         <HugeiconsIcon

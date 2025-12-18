@@ -36,7 +36,7 @@ export default function ProfileDropdown({
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end">
+      <DropdownMenuContent className="z-200 w-56" align="end">
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
             <p className="font-medium text-sm leading-none">

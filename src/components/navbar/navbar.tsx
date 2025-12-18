@@ -2,21 +2,26 @@
 
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import {
+  Cancel01Icon,
   FavouriteIcon,
   Globe02Icon,
   Menu01Icon,
   Search01Icon,
   TicketStarIcon,
+  UserIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import EventixLogo from "../EventixLogo";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import MobileMenu from "./mobile-menu";
 import ProfileDropdown from "./profile-dropdown";
 
-const links = [
+const publicLinks = [
   {
     href: "/",
     label: "Home",
@@ -39,86 +44,139 @@ const links = [
   // },
 ];
 
+const userLinks = [
+  {
+    href: "/tickets",
+    label: "My Tickets",
+    icon: TicketStarIcon,
+  },
+  {
+    href: "/favorites",
+    label: "Favorites",
+    icon: FavouriteIcon,
+  },
+  {
+    href: "/profile",
+    label: "Profile",
+    icon: UserIcon,
+  },
+];
+
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { user } = useUser();
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
-    <nav className="mb-8 box-border grid min-h-18 grid-cols-[auto_1fr_auto] items-center gap-4 border-foreground-muted border-b bg-card px-4 sm:px-6 lg:px-10">
-      <div className="lg:flex lg:gap-10">
-        <div>
-          <Link href="/">
-            <EventixLogo className="text-2xl sm:hidden" short />
-          </Link>
-          <Link href="/">
-            <EventixLogo className="hidden sm:block" />
-          </Link>
-        </div>
-        <ul className="mr-2 hidden gap-6 lg:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                className={`font-semibold capitalize hover:text-primary ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="relative mx-auto flex w-full max-w-xl shrink items-center">
-        <Input
-          placeholder="Search event, artist or venue"
-          className="h-10 w-full rounded-full border-none pl-11 placeholder:text-md"
-        />
-        <HugeiconsIcon
-          icon={Search01Icon}
-          className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground"
-        />
-      </div>
-
-      <HugeiconsIcon
-        icon={Menu01Icon}
-        className="size-6 min-w-6 lg:hidden"
-        color="var(--muted-foreground)"
-      />
-
-      <div className="hidden items-center gap-2 justify-self-end lg:flex">
-        <SignedIn>
-          <Button
-            variant="ghost"
-            className="flex size-8 items-center justify-center rounded-full"
-          >
-            <HugeiconsIcon
-              icon={TicketStarIcon}
-              className="size-5 text-muted-foreground"
-            />
-          </Button>
-          <Button
-            variant="ghost"
-            className="flex size-8 items-center justify-center rounded-full"
-          >
-            <HugeiconsIcon
-              icon={FavouriteIcon}
-              className="size-5 text-muted-foreground"
-            />
-          </Button>
-          <ProfileDropdown user={user} />
-        </SignedIn>
-        <SignedOut>
-          <div className="flex items-center gap-4">
-            <HugeiconsIcon
-              icon={Globe02Icon}
-              className="size-5 text-muted-foreground"
-            />
-            <Button className="rounded-full border-none" variant={"outline"}>
-              <Link href="/sign-in">Sign In</Link>
-            </Button>
+    <>
+      <nav className="sticky top-0 z-60 flex h-[72px] w-full items-center justify-between gap-4 border-b bg-sidebar px-4 sm:px-6 lg:px-10">
+        <div className="flex items-center gap-10">
+          <div>
+            <Link href="/">
+              <EventixLogo className="text-2xl sm:hidden" short />
+            </Link>
+            <Link href="/">
+              <EventixLogo className="hidden sm:block" />
+            </Link>
           </div>
-        </SignedOut>
-      </div>
-    </nav>
+          <ul className="mr-2 hidden gap-6 lg:flex">
+            {publicLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  className={`font-semibold capitalize hover:text-primary ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
+                  href={link.href}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="relative mx-auto flex w-full max-w-md shrink items-center">
+          <Input
+            placeholder="Search event, artist or venue"
+            className="h-10 w-full rounded-full border-none pl-11 placeholder:text-md"
+          />
+          <HugeiconsIcon
+            icon={Search01Icon}
+            className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground"
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            className="flex size-10 items-center justify-center rounded-full lg:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <HugeiconsIcon
+                icon={Cancel01Icon}
+                className="size-6"
+                color="var(--muted-foreground)"
+              />
+            ) : (
+              <HugeiconsIcon
+                icon={Menu01Icon}
+                className="size-6"
+                color="var(--muted-foreground)"
+              />
+            )}
+          </Button>
+          <div className="hidden items-center gap-2 justify-self-end lg:flex">
+            <SignedIn>
+              {userLinks.slice(0, 2).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex size-8 items-center justify-center rounded-full"
+                >
+                  <HugeiconsIcon
+                    icon={link.icon}
+                    className="size-6 text-muted-foreground"
+                  />
+                </Link>
+              ))}
+
+              <ProfileDropdown user={user} />
+            </SignedIn>
+            <SignedOut>
+              <div className="flex items-center gap-4">
+                <HugeiconsIcon
+                  icon={Globe02Icon}
+                  className="size-5 text-muted-foreground"
+                />
+                <Button
+                  className="rounded-full border-none"
+                  variant={"outline"}
+                >
+                  <Link href="/sign-in">Sign In</Link>
+                </Button>
+              </div>
+            </SignedOut>
+          </div>
+        </div>
+      </nav>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <MobileMenu
+            pathname={pathname}
+            publicLinks={publicLinks}
+            userLinks={userLinks}
+            onClose={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
