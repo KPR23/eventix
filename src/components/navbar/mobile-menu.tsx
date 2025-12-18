@@ -17,11 +17,11 @@ export default function MobileMenu({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -10 }}
+      initial={{ opacity: 0, y: -72 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-x-0 top-[112px] bottom-0 z-50 flex max-w-screen flex-col bg-background/95 backdrop-blur-xl lg:hidden"
+      exit={{ opacity: 0, y: -72 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="absolute top-full right-0 left-0 z-10 flex h-[calc(100svh-100%)] w-screen flex-col overflow-y-auto bg-background/95 backdrop-blur-xl lg:hidden"
     >
       <div className="flex w-full flex-col p-4">
         {publicLinks.map((link) => (
