@@ -2,11 +2,18 @@
 
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import {
+  CalendarFavorite01Icon,
   Cancel01Icon,
   FavouriteIcon,
+  Folder01Icon,
   Globe02Icon,
+  Home07Icon,
   Menu01Icon,
+  MusicNote01Icon,
   Search01Icon,
+  Ticket01Icon,
+  Ticket02Icon,
+  Ticket03Icon,
   TicketStarIcon,
   UserIcon,
 } from "@hugeicons/core-free-icons";
@@ -25,18 +32,22 @@ const publicLinks = [
   {
     href: "/",
     label: "Home",
+    icon: Home07Icon,
   },
   {
     href: "/events",
     label: "Events",
+    icon: Ticket01Icon,
   },
   {
-    href: "/festivals",
-    label: "Festivals",
+    href: "/concerts",
+    label: "Concerts",
+    icon: MusicNote01Icon,
   },
   {
     href: "/categories",
     label: "Categories",
+    icon: Folder01Icon,
   },
   // {
   //   href: "/contact",
