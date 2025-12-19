@@ -2,18 +2,11 @@
 
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import {
-  CalendarFavorite01Icon,
   Cancel01Icon,
   FavouriteIcon,
-  Folder01Icon,
   Globe02Icon,
-  Home07Icon,
   Menu01Icon,
-  MusicNote01Icon,
   Search01Icon,
-  Ticket01Icon,
-  Ticket02Icon,
-  Ticket03Icon,
   TicketStarIcon,
   UserIcon,
 } from "@hugeicons/core-free-icons";
@@ -32,22 +25,18 @@ const publicLinks = [
   {
     href: "/",
     label: "Home",
-    icon: Home07Icon,
   },
   {
     href: "/events",
     label: "Events",
-    icon: Ticket01Icon,
   },
   {
     href: "/concerts",
     label: "Concerts",
-    icon: MusicNote01Icon,
   },
   {
     href: "/categories",
     label: "Categories",
-    icon: Folder01Icon,
   },
   // {
   //   href: "/contact",
@@ -90,71 +79,80 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <div className="sticky top-0 z-60 w-full">
-      <nav className="relative z-20 flex h-[72px] w-full items-center justify-between gap-4 border-b bg-sidebar px-4 sm:px-6 lg:px-10">
+    <div className="sticky top-0 z-60 w-full transition-all duration-300">
+      <nav className="relative z-20 flex h-[72px] w-full items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-xl sm:px-6 lg:px-10">
         <div className="flex items-center gap-10">
-          <div>
-            <Link href="/">
+          <div className="flex items-center">
+            <Link
+              href="/"
+              className="transition-transform duration-200 active:scale-95"
+            >
               <EventixLogo className="text-2xl sm:hidden" short />
-            </Link>
-            <Link href="/">
               <EventixLogo className="hidden sm:block" />
             </Link>
           </div>
-          <ul className="mr-2 hidden gap-6 lg:flex">
+          <ul className="mr-2 hidden items-center gap-6 lg:flex">
             {publicLinks.map((link) => (
-              <li key={link.href}>
+              <li key={link.href} className="relative">
                 <Link
-                  className={`font-semibold capitalize hover:text-primary ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
+                  className={`group relative py-2 font-medium transition-colors duration-200 ${
+                    pathname === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   href={link.href}
                 >
                   {link.label}
+                  <span
+                    className={`absolute top-8 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full ${pathname === link.href ? "w-full" : ""}`}
+                  />
                 </Link>
               </li>
             ))}
           </ul>
         </div>
-        <div className="relative mx-auto flex w-full max-w-md shrink items-center">
+
+        <div className="group 2xl:-translate-x-20 relative flex-1 items-center px-1 sm:mx-auto sm:max-w-md lg:px-0">
           <Input
-            placeholder="Search event, artist or venue"
-            className="h-10 w-full rounded-full border-none pl-11 placeholder:text-md"
+            placeholder="Search events, artists or venues..."
+            className="h-11 w-full rounded-full border-none bg-muted/40 pl-11 shadow-sm ring-offset-background transition-all placeholder:items-center placeholder:font-medium placeholder:text-muted-foreground/60 focus-visible:bg-muted/60 focus-visible:ring-2 focus-visible:ring-primary/20"
           />
           <HugeiconsIcon
             icon={Search01Icon}
-            className="-translate-y-1/2 absolute top-1/2 left-4 size-4 text-foreground"
+            className="-translate-y-1/2 absolute top-1/2 left-4 size-5 text-muted-foreground transition-colors group-focus-within:text-primary"
           />
         </div>
+
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
-            className="flex size-10 items-center justify-center rounded-full lg:hidden"
+            className="flex size-11 items-center justify-center rounded-full transition-all active:scale-90 lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
               <HugeiconsIcon
                 icon={Cancel01Icon}
-                className="size-6"
-                color="var(--muted-foreground)"
+                className="size-6 text-foreground"
               />
             ) : (
               <HugeiconsIcon
                 icon={Menu01Icon}
-                className="size-6"
-                color="var(--muted-foreground)"
+                className="size-6 text-foreground"
               />
             )}
           </Button>
-          <div className="hidden items-center gap-2 justify-self-end lg:flex">
+
+          <div className="hidden items-center gap-3 justify-self-end lg:flex">
             <SignedIn>
               {userLinks.slice(0, 2).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex size-8 items-center justify-center rounded-full"
+                  className="flex size-10 items-center justify-center rounded-full transition-all hover:bg-muted active:scale-95"
                 >
                   <HugeiconsIcon
                     icon={link.icon}
-                    className="size-6 text-muted-foreground"
+                    className={`size-6 transition-colors ${pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
                   />
                 </Link>
               ))}
@@ -162,14 +160,17 @@ export default function Navbar() {
               <ProfileDropdown user={user} />
             </SignedIn>
             <SignedOut>
-              <div className="flex items-center gap-4">
-                <HugeiconsIcon
-                  icon={Globe02Icon}
-                  className="size-5 text-muted-foreground"
-                />
+              <div className="flex items-center">
                 <Button
-                  className="rounded-full border-none"
-                  variant={"outline"}
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full text-muted-foreground hover:text-foreground"
+                >
+                  <HugeiconsIcon icon={Globe02Icon} className="size-5" />
+                </Button>
+                <Button
+                  className="hover:-translate-y-px rounded-full px-6 font-bold shadow-lg shadow-primary/20 transition-all active:translate-y-0 active:scale-95"
+                  asChild
                 >
                   <Link href="/sign-in">Sign In</Link>
                 </Button>
