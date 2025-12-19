@@ -15,11 +15,11 @@ import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import EventixLogo from "../EventixLogo";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import MobileMenu from "./mobile-menu";
-import ProfileDropdown from "./profile-dropdown";
+import EventixLogo from "@/components/EventixLogo";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { MobileMenu } from "./mobile-menu";
+import { ProfileDropdown } from "./profile-dropdown";
 
 const publicLinks = [
   {
@@ -62,7 +62,7 @@ const userLinks = [
   },
 ];
 
-export default function Navbar() {
+export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { user } = useUser();

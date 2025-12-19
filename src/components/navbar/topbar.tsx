@@ -17,7 +17,7 @@ const links = [
   },
 ];
 
-export default function Topbar() {
+export function Topbar() {
   const content = "The Weeknd at PGE Narodowy was sold out";
 
   return (

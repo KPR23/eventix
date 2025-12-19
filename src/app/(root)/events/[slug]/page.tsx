@@ -4,10 +4,10 @@ import { useQuery } from "convex/react";
 import { Loader2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { use } from "react";
+import { api } from "@/convex/_generated/api";
 import type { FullEvent } from "@/types/FullEvent";
-import { api } from "../../../../../convex/_generated/api";
-import EventBody from "./_components/EventBody";
-import EventHeader from "./_components/EventHeader";
+import { EventBody } from "./_components/EventBody";
+import { EventHeader } from "./_components/EventHeader";
 
 export default function EventPage({
   params,
@@ -25,7 +25,7 @@ export default function EventPage({
   return (
     <div className="container mx-auto">
       <EventHeader event={fullEvent} />
-      <EventBody event={fullEvent} />
+      {/* <EventBody event={fullEvent} /> */}
     </div>
   );
 }

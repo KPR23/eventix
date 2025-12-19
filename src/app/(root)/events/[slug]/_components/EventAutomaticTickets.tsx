@@ -14,12 +14,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { api } from "@/convex/_generated/api";
+import type { Id } from "@/convex/_generated/dataModel";
 import type { FullEvent } from "@/types/FullEvent";
-import { api } from "../../../../../../convex/_generated/api";
-import type { Id } from "../../../../../../convex/_generated/dataModel";
-import CounterButtonsGroup from "./CounterButtonsGroup";
+import { CounterButtonsGroup } from "./CounterButtonsGroup";
 
-export default function EventAutomaticTickets({
+export function EventAutomaticTickets({
   event,
   tickets,
   setTickets,

@@ -1,4 +1,4 @@
-export default function EventManualTickets() {
+export function EventManualTickets() {
   return (
     <div>
       <h1>Manual tickets</h1>

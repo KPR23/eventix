@@ -1,12 +1,13 @@
 import { useState } from "react";
 import type { FullEvent } from "@/types/FullEvent";
-import EventAutomaticTickets from "./EventAutomaticTickets";
-import EventManualTickets from "./EventManualTickets";
-import EventSittingMethodSelector, {
+import { EventAutomaticTickets } from "./EventAutomaticTickets";
+import { EventManualTickets } from "./EventManualTickets";
+import {
+  EventSittingMethodSelector,
   type SeatSelectionMethod,
 } from "./EventSittingMethodSelector";
 
-export default function EventRightCol({ event }: { event: FullEvent }) {
+export function EventRightCol({ event }: { event: FullEvent }) {
   const [selected, setSelected] = useState<SeatSelectionMethod>("automatic");
   const [tickets, setTickets] = useState<Record<string, number>>({});
 

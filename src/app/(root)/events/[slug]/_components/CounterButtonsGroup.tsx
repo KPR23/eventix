@@ -2,7 +2,7 @@ import { Add01Icon, Remove01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@/components/ui/button";
 
-export default function CounterButtonsGroup({
+export function CounterButtonsGroup({
   value,
   onChange,
   maxTickets,

@@ -1,7 +1,7 @@
-import Navbar from "@/components/navbar/navbar";
-import Topbar from "@/components/navbar/topbar";
+import { Navbar } from "@/components/navbar/navbar";
+import { Topbar } from "@/components/navbar/topbar";
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

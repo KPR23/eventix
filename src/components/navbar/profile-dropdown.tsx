@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function ProfileDropdown({
+export function ProfileDropdown({
   user,
 }: {
   user: UserResource | null | undefined;

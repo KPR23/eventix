@@ -28,7 +28,7 @@ const itemVariants: any = {
   visible: { opacity: 1, x: 0 },
 };
 
-export default function MobileMenu({
+export function MobileMenu({
   publicLinks,
   userLinks,
   pathname,
