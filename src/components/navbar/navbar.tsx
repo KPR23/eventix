@@ -79,7 +79,7 @@ export function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <div className="sticky top-0 z-60 mb-8 w-full transition-all duration-300">
+    <div className="sticky top-0 z-60 mb-6 w-full transition-all duration-300 lg:mb-8">
       <nav className="relative z-20 flex h-[72px] w-full items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-xl sm:px-6 lg:px-10">
         <div className="flex items-center gap-10">
           <div className="flex items-center">

@@ -6,33 +6,72 @@ import {
   FavouriteIcon,
   Link04Icon,
   Location01Icon,
+  Share03Icon,
   Tick02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useMutation } from "convex/react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { EventSaleStatusHelper } from "@/components/EventSaleStatusHelper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
+import { SaleStatus } from "@/convex/schema";
 import type { FullEvent } from "@/types/FullEvent";
 
 export function EventHeader({ event }: { event: FullEvent }) {
   const toggleFavorite = useMutation(api.events.toggleFavorite);
   const [isCopied, setIsCopied] = useState(false);
+  const imageUrl = "/OWF.webp";
 
   return (
-    <div className="mx-4">
-      <div className="flex w-full flex-col items-start gap-2 lg:flex-row lg:justify-between">
-        <h1 className="font-bold font-zalando text-3xl uppercase md:text-4xl lg:text-5xl">
+    <div className="mx-4 lg:mx-0">
+      <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between">
+        <h1 className="mb-2 text-wrap font-bold font-zalando text-2xl uppercase leading-tight md:text-4xl lg:mb-0 lg:text-5xl">
           {event.title}
         </h1>
 
+        <div className="mb-4 flex w-full items-center gap-2 sm:w-fit lg:rounded-l-full">
+          <Link href={"/"} target="_blank">
+            <Badge
+              variant="outline"
+              className="border-none bg-card px-4 py-1 font-medium text-muted-foreground text-sm lg:hidden"
+            >
+              {event.type}
+            </Badge>
+          </Link>
+
+          <Badge
+            variant="outline"
+            className={`border-none px-4 py-1 font-medium text-sm lg:hidden ${
+              event.saleStatus === SaleStatus.OnSale
+                ? "bg-emerald-500/10 text-emerald-500"
+                : event.saleStatus === SaleStatus.SoldOut
+                  ? "bg-red-500/10 text-red-500"
+                  : "bg-amber-500/10 text-amber-500"
+            }`}
+          >
+            {EventSaleStatusHelper(event.saleStatus)}
+          </Badge>
+        </div>
+
+        <div className="mb-4 flex w-full flex-col gap-4 lg:hidden lg:w-64">
+          <div className="relative aspect-4/3 w-full sm:aspect-video sm:max-w-full">
+            <Image
+              src={imageUrl}
+              alt={event.title}
+              fill
+              className="rounded-xl object-cover"
+            />
+          </div>
+        </div>
         <div className="grid w-full grid-cols-[auto_1px_auto] items-center lg:flex lg:w-fit">
           <Button
             asChild
-            className={`h-12 w-full items-center justify-center rounded-none rounded-l-full hover:bg-red-400 hover:text-red-900 lg:w-12 ${event.isFavorite ? "bg-red-500 text-red-950" : "bg-input/30 text-muted-foreground"}`}
+            className={`h-10 w-full items-center justify-center rounded-none rounded-l-full hover:bg-red-400 hover:text-red-900 lg:w-12 ${event.isFavorite ? "bg-red-500 text-red-950" : "bg-input/30 text-muted-foreground"}`}
             onClick={() => toggleFavorite({ eventId: event._id })}
           >
             <motion.button whileTap={{ scale: 0.9 }}>
@@ -51,7 +90,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
           <div className="h-full w-[0.25px] border border-input/40 lg:hidden" />
           <Button
             asChild
-            className="h-12 w-full items-center justify-center rounded-none rounded-r-full border-none text-muted-foreground hover:bg-input/30 lg:w-12"
+            className="h-10 w-full items-center justify-center rounded-none rounded-r-full border-none text-muted-foreground hover:bg-input/30 lg:w-12"
             variant={"outline"}
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
@@ -82,7 +121,14 @@ export function EventHeader({ event }: { event: FullEvent }) {
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <HugeiconsIcon icon={Link04Icon} className="size-5" />
+                    <HugeiconsIcon
+                      icon={Link04Icon}
+                      className="hidden size-5 lg:block"
+                    />
+                    <HugeiconsIcon
+                      icon={Share03Icon}
+                      className="size-5 lg:hidden"
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -95,7 +141,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
         <Link
           href={"/"}
           target="_blank"
-          className="w-full sm:w-fit lg:rounded-l-full"
+          className="hidden w-full sm:w-fit lg:block lg:rounded-l-full"
         >
           <Badge
             variant="outline"
@@ -104,11 +150,10 @@ export function EventHeader({ event }: { event: FullEvent }) {
             {event.type}
           </Badge>
         </Link>
-
         <div className="grid w-full grid-cols-[1fr_auto] items-center gap-2 lg:flex lg:w-fit lg:gap-0">
           <Badge
             variant="outline"
-            className="flex h-10 w-full items-center justify-center gap-2 rounded-full font-medium text-base sm:w-fit lg:rounded-none lg:px-6"
+            className="flex h-10 w-full items-center justify-center gap-2 rounded-full font-medium text-base lg:w-fit lg:rounded-none lg:px-6"
           >
             <HugeiconsIcon
               icon={Calendar03Icon}
@@ -125,7 +170,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
 
           <Badge
             variant="outline"
-            className="flex h-10 w-full items-center justify-center gap-2 rounded-full px-8 font-medium text-base sm:w-fit lg:rounded-none lg:border-x-0 lg:px-6"
+            className="flex h-10 w-fit items-center justify-center gap-2 rounded-full px-4 font-medium text-base lg:rounded-none lg:border-x-0 lg:px-6"
           >
             <HugeiconsIcon
               icon={Clock01Icon}
@@ -141,7 +186,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
         </div>
         <Badge
           variant="outline"
-          className="flex h-10 w-full items-center justify-center gap-2 rounded-full font-medium text-base sm:w-fit lg:rounded-none lg:rounded-r-full lg:pr-7 lg:pl-6"
+          className="flex h-10 w-full items-center justify-center gap-2 rounded-full font-medium text-base lg:w-fit lg:rounded-none lg:rounded-r-full lg:pr-7 lg:pl-6"
         >
           <HugeiconsIcon
             icon={Location01Icon}
