@@ -25,7 +25,7 @@ export default function EventPage({
   return (
     <div className="container mx-auto flex flex-col gap-4 lg:gap-8">
       <EventHeader event={fullEvent} />
-      {/* <EventBody event={fullEvent} /> */}
+      <EventBody event={fullEvent} />
     </div>
   );
 }

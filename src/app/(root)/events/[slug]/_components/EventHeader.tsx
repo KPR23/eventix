@@ -151,10 +151,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
           </Badge>
         </Link>
         <div className="grid w-full grid-cols-[1fr_auto] items-center gap-2 lg:flex lg:w-fit lg:gap-0">
-          <Badge
-            variant="outline"
-            className="flex h-10 w-full items-center justify-center gap-2 rounded-full font-medium text-base lg:w-fit lg:rounded-none lg:px-6"
-          >
+          <Badge className="flex h-10 w-full items-center justify-center gap-2 rounded-full border-none bg-card font-medium text-base lg:w-fit lg:rounded-none lg:px-6">
             <HugeiconsIcon
               icon={Calendar03Icon}
               className="size-4 text-muted-foreground"
@@ -168,10 +165,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
             </span>
           </Badge>
 
-          <Badge
-            variant="outline"
-            className="flex h-10 w-fit items-center justify-center gap-2 rounded-full px-4 font-medium text-base lg:rounded-none lg:border-x-0 lg:px-6"
-          >
+          <Badge className="flex h-10 w-fit items-center justify-center gap-2 rounded-full border-none bg-card px-4 font-medium text-base lg:rounded-none lg:border-x-0 lg:px-6">
             <HugeiconsIcon
               icon={Clock01Icon}
               className="size-4 text-muted-foreground"
