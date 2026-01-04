@@ -4,8 +4,8 @@ import type { FullEvent } from "@/types/FullEvent";
 export function EventLeftCol({ event }: { event: FullEvent }) {
   const imageUrl = "/OWF.webp";
   return (
-    <div className="hidden w-full flex-col gap-4 lg:flex">
-      <div className="relative flex aspect-3/4 flex-col gap-4">
+    <div className="flex w-full flex-col gap-4">
+      <div className="relative flex hidden aspect-3/4 flex-col gap-4 lg:block">
         <Image
           src={imageUrl}
           alt={event.title}
@@ -14,7 +14,9 @@ export function EventLeftCol({ event }: { event: FullEvent }) {
           className="rounded-xl"
         />
       </div>
-      <p className="text-muted-foreground text-sm">{event.description}</p>
+      <p className="hidden text-muted-foreground text-sm lg:block">
+        {event.description}
+      </p>
     </div>
   );
 }

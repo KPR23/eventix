@@ -68,7 +68,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
             />
           </div>
         </div>
-        <div className="grid w-full grid-cols-[auto_1px_auto] items-center lg:flex lg:w-fit">
+        <div className="grid w-full grid-cols-[1fr_1px_1fr] items-center lg:flex lg:w-fit">
           <Button
             asChild
             className={`h-10 w-full items-center justify-center rounded-none rounded-l-full hover:bg-red-400 hover:text-red-900 lg:w-12 ${event.isFavorite ? "bg-red-500 text-red-950" : "bg-input/30 text-muted-foreground"}`}
@@ -78,12 +78,18 @@ export function EventHeader({ event }: { event: FullEvent }) {
               <motion.div
                 animate={{ scale: event.isFavorite ? 1.1 : 1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="flex items-center gap-2"
               >
                 <HugeiconsIcon
                   icon={FavouriteIcon}
                   className="size-5"
                   fill={event.isFavorite ? "currentColor" : "none"}
                 />
+                <span
+                  className={`text-sm lg:hidden ${event.isFavorite ? "font-semibold" : "font-medium"}`}
+                >
+                  {event.isFavorite ? "Saved" : "Save"}
+                </span>
               </motion.div>
             </motion.button>
           </Button>
@@ -120,6 +126,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
+                    className="flex items-center gap-2"
                   >
                     <HugeiconsIcon
                       icon={Link04Icon}
@@ -129,6 +136,9 @@ export function EventHeader({ event }: { event: FullEvent }) {
                       icon={Share03Icon}
                       className="size-5 lg:hidden"
                     />
+                    <span className="text-sm lg:hidden">
+                      {isCopied ? "" : "Share"}
+                    </span>
                   </motion.div>
                 )}
               </AnimatePresence>

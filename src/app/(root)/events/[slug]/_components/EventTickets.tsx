@@ -7,7 +7,7 @@ import {
   type SeatSelectionMethod,
 } from "./EventSittingMethodSelector";
 
-export function EventRightCol({ event }: { event: FullEvent }) {
+export function EventTickets({ event }: { event: FullEvent }) {
   const [selected, setSelected] = useState<SeatSelectionMethod>("automatic");
   const [tickets, setTickets] = useState<Record<string, number>>({});
 
@@ -19,10 +19,10 @@ export function EventRightCol({ event }: { event: FullEvent }) {
   return (
     <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <h1 className="flex items-center gap-2 font-medium text-lg">
-          <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 font-bold text-primary text-sm">
-            1
-          </span>
+        <h1 className="font-medium text-lg">
+          <span className="rounded-full bg-primary px-2 py-1 font-semibold text-primary-foreground text-xs">
+            1.
+          </span>{" "}
           Choose your seating option
         </h1>
         <EventSittingMethodSelector

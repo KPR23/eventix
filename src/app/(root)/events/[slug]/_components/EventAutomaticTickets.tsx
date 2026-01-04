@@ -72,7 +72,12 @@ export function EventAutomaticTickets({
 
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="font-medium text-lg">2. Select the number of tickets</h1>
+      <h1 className="flex items-center gap-2 font-medium text-lg">
+        <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 font-bold text-primary text-sm">
+          2
+        </span>
+        Select the number of tickets
+      </h1>
       {event.ticketTypes?.length === 0 ? (
         // TODO: Fix UI
         <p className="text-center text-red-500">
