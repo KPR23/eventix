@@ -5,7 +5,7 @@ export function EventLeftCol({ event }: { event: FullEvent }) {
   const imageUrl = "/OWF.webp";
   return (
     <div className="flex w-full flex-col gap-4">
-      <div className="relative flex hidden aspect-3/4 flex-col gap-4 lg:block">
+      <div className="relative hidden aspect-3/4 flex-col gap-4 lg:flex">
         <Image
           src={imageUrl}
           alt={event.title}

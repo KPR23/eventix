@@ -19,7 +19,7 @@ export function EventTickets({ event }: { event: FullEvent }) {
   return (
     <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <h1 className="font-medium text-lg">
+        <h1 className="font-semibold text-md lg:text-lg">
           <span className="rounded-full bg-primary px-2 py-1 font-semibold text-primary-foreground text-xs">
             1.
           </span>{" "}

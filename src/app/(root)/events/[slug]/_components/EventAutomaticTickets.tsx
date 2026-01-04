@@ -72,7 +72,7 @@ export function EventAutomaticTickets({
 
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="flex items-center gap-2 font-medium text-lg">
+      <h1 className="flex items-center gap-2 font-semibold text-md lg:text-lg">
         <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 font-bold text-primary text-sm">
           2
         </span>
