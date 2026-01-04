@@ -28,9 +28,9 @@ export function EventHeader({ event }: { event: FullEvent }) {
   const imageUrl = "/OWF.webp";
 
   return (
-    <div className="mx-4 lg:mx-0">
+    <div className="">
       <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between">
-        <h1 className="mb-2 text-wrap font-bold font-zalando text-2xl uppercase leading-tight md:text-4xl lg:mb-0 lg:text-5xl">
+        <h1 className="mb-4 text-wrap font-bold font-zalando text-3xl uppercase leading-tight md:text-5xl lg:mb-0 lg:text-5xl">
           {event.title}
         </h1>
 
@@ -38,7 +38,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
           <Link href={"/"} target="_blank">
             <Badge
               variant="outline"
-              className="border-none bg-card px-4 py-1 font-medium text-muted-foreground text-sm lg:hidden"
+              className="border-none bg-card px-3 py-1.5 font-medium text-muted-foreground text-sm lg:hidden"
             >
               {event.type}
             </Badge>
@@ -46,7 +46,7 @@ export function EventHeader({ event }: { event: FullEvent }) {
 
           <Badge
             variant="outline"
-            className={`border-none px-4 py-1 font-medium text-sm lg:hidden ${
+            className={`border-none px-3 py-1.5 font-medium text-sm lg:hidden ${
               event.saleStatus === SaleStatus.OnSale
                 ? "bg-emerald-500/10 text-emerald-500"
                 : event.saleStatus === SaleStatus.SoldOut

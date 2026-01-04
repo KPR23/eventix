@@ -17,10 +17,10 @@ export function EventRightCol({ event }: { event: FullEvent }) {
   };
 
   return (
-    <div className="flex w-full flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <h1 className="flex items-center gap-2 font-semibold text-md lg:text-lg">
-          <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 font-bold text-primary text-sm">
+    <div className="flex w-full flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <h1 className="flex items-center gap-3 font-semibold text-lg lg:text-xl">
+          <span className="flex size-7 items-center justify-center rounded-full bg-primary/10 font-bold text-primary text-sm shadow-sm ring-1 ring-primary/20">
             1
           </span>
           Choose your seating option
