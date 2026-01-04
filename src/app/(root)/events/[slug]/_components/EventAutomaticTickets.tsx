@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { api } from "@/convex/_generated/api";
 import type { Id } from "@/convex/_generated/dataModel";
+import { cn } from "@/lib/utils";
 import type { FullEvent } from "@/types/FullEvent";
 import { CounterButtonsGroup } from "./CounterButtonsGroup";
 
@@ -71,15 +72,14 @@ export function EventAutomaticTickets({
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <h1 className="flex items-center gap-2 font-semibold text-md lg:text-lg">
-        <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 font-bold text-primary text-sm">
+    <div className="flex flex-col gap-4">
+      <h1 className="flex items-center gap-3 font-semibold text-lg lg:text-xl">
+        <span className="flex size-7 items-center justify-center rounded-full bg-primary/10 font-bold text-primary text-sm shadow-sm ring-1 ring-primary/20">
           2
         </span>
         Select the number of tickets
       </h1>
       {event.ticketTypes?.length === 0 ? (
-        // TODO: Fix UI
         <p className="text-center text-red-500">
           No ticket types found for this event.
         </p>
@@ -90,10 +90,15 @@ export function EventAutomaticTickets({
           const maxForThisType = currentCount + remainingTickets;
 
           return (
-            <Card className="rounded-md border-none p-4" key={ticketType._id}>
-              <CardContent className="flex items-center justify-between">
+            <Card
+              className={cn("rounded-md border-none p-6 shadow-sm")}
+              key={ticketType._id}
+            >
+              <CardContent className="flex items-center justify-between p-0">
                 <div className="mr-8 flex w-full items-center gap-6">
-                  <CardTitle>{ticketType.name}</CardTitle>
+                  <CardTitle className="font-bold text-base">
+                    {ticketType.name}
+                  </CardTitle>
                   <div className="flex w-full items-center justify-between text-sm">
                     <p className="text-muted-foreground">
                       {ticketType.description}
